@@ -23,7 +23,7 @@ particle::~particle()
 }
 
 //¸Þ¼Òµå
-void particle::printinfor()
+void particle::printall()
 {
 	cout << "mass: " << m << endl;
 	cout << "x, y: " << x << ", " << y << endl;

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "particleset.h"
-
+using namespace std;
 
 particleset::particleset()
 {
@@ -13,7 +13,7 @@ particleset::~particleset()
 	{
 		pdelete = ptr;
 		ptr = ptr->pNext;
-		pdelete->printinfor();
+		//pdelete->printinfor();
 		delete pdelete;
 	}
 	HeadNode.pNext = nullptr;
@@ -30,13 +30,35 @@ void particleset::addparticle(particle& rhs)
 	pNode->pNext = HeadNode.pNext;
 	HeadNode.pNext = pNode;
 }
-//파티클을 셋에서 제외
-void particleset::removeparticle(particle &rhs)
+//셋에 있는 입자들을 프린트
+void particleset::showmembers()
 {
-
+	cout << "showmembers()" << endl;
+	particle *ptr = HeadNode.pNext;
+	while (ptr)
+	{
+		ptr->printall();
+		ptr = ptr->pNext;
+	}
+}
+//파티클을 셋에서 제외
+particle& particleset::removeparticle(particle &rhs)
+{
+	particle *ptr = HeadNode.pNext;
+	while (ptr->pNext == &rhs)
+		ptr = ptr->pNext;
+	ptr->pNext = rhs.pNext;
+	rhs.pNext = nullptr;
+	return rhs;
 }
 //파티클을 삭제
 void particleset::deleteparticle(particle &rhs)
 {
-
+	particle *pdelete = nullptr;
+	particle *ptr = HeadNode.pNext;
+	while (ptr->pNext == &rhs)
+		ptr = ptr->pNext;
+	pdelete = ptr->pNext;
+	ptr->pNext = rhs.pNext;
+	delete pdelete;
 }

@@ -10,6 +10,7 @@ public:
 	~particleset();
 	void createparticle(double, double, double, double = 0, double = 0);
 	void addparticle(particle&);
-	void removeparticle(particle&);
+	particle& removeparticle(particle&);
 	void deleteparticle(particle&);
+	void showmembers();
 };

@@ -14,7 +14,8 @@ public:
 	double getmass() { return m; };
 	double getlocation() { return x,y ; };
 	double getvelocity() { return v_x, v_y; };
-	void printinfor();
+	void printall();
+
 private:
 	double m;
 	double x;
@@ -22,7 +23,7 @@ private:
 	double v_x;
 	double v_y;
 	double f=0;
-
 	particle *pNext = nullptr;
+
 };
 
