@@ -2,64 +2,81 @@
 #include "particleset.h"
 #include <iostream>
 using namespace std;
+//particle ∞¥√º∞° ¿⁄±‚¿« ¡÷º“∏¶ ∏‚πˆ ∆˜¿Œ≈Õ ∫Øºˆ∑Œ ∞Æ∞Ì ¿÷¥Ÿ.
+//±◊ ∆˜¿Œ≈Õ ∫ØºˆµÈ¿ª πËø≠∑Œ ∏∏µÈæÓ ¿‘¿⁄ ∞¥√º ∏ÆΩ∫∆Æ∏¶ ∞¸∏Æ«œ¥¬ friend ≈¨∑°Ω∫
 
 particleset::particleset()
 {
 }
 particleset::~particleset()
 {
-	particle *ptr = HeadNode.pNext;
-	particle *pdelete = nullptr;
-	while (ptr)
-	{
-		pdelete = ptr;
-		ptr = ptr->pNext;
-		//pdelete->printinfor();
-		delete pdelete;
-	}
-	HeadNode.pNext = nullptr;
+	delete[] List;
 }
-void particleset::createparticle(double pm, double px, double py, double pv_x, double pv_y)
-{
-	particle *pNode = new particle(pm, px, py, pv_x, pv_y);
-	pNode->pNext = HeadNode.pNext;
-	HeadNode.pNext = pNode;
-}
+
 void particleset::addparticle(particle& rhs)
 {
-	particle *pNode = new particle(rhs);
-	pNode->pNext = HeadNode.pNext;
-	HeadNode.pNext = pNode;
+	if (List != nullptr)
+	{
+		particle **newList = new particle*[size+1];
+		for (int i = 0; i < size ; i++)
+			newList[i] = List[i];
+		delete[] List;
+		newList[size] = rhs.id;
+		List = newList;
+	}
+	else
+	{
+		List = new particle*[size+1];
+		List[0] = rhs.id;
+	}
+	size++;
 }
-//ÏÖãÏóê ÏûàÎäî ÏûÖÏûêÎì§ÏùÑ ÌîÑÎ¶∞Ìä∏
+//º¬ø° ¿÷¥¬ ¿‘¿⁄µÈ¿ª «¡∏∞∆Æ
 void particleset::showmembers()
 {
-	cout << "showmembers()" << endl;
-	particle *ptr = HeadNode.pNext;
-	while (ptr)
+	cout << "∏µÁ ¿‘¿⁄ «¡∏∞∆Æ" << endl;
+	for (int i = 0; i < size; i++)
 	{
-		ptr->printall();
-		ptr = ptr->pNext;
+		List[i]->printall();
 	}
 }
-//ÌååÌã∞ÌÅ¥ÏùÑ ÏÖãÏóêÏÑú Ï†úÏô∏
-particle& particleset::removeparticle(particle &rhs)
-{
-	particle *ptr = HeadNode.pNext;
-	while (ptr->pNext == &rhs)
-		ptr = ptr->pNext;
-	ptr->pNext = rhs.pNext;
-	rhs.pNext = nullptr;
-	return rhs;
+//∆ƒ∆º≈¨¿ª º¬ø°º≠ ¡¶ø‹
+void particleset::removeparticle(particle &rhs)
+{	
+	int i = findindex(rhs);
+	removeparticle(i);
 }
-//ÌååÌã∞ÌÅ¥ÏùÑ ÏÇ≠Ï†ú
+//¿Œµ¶Ω∫∑Œ ¡¶ø‹
+void particleset::removeparticle(int i)
+{
+	if (i >= size)
+	{
+		cout << "∏ÆΩ∫∆Æ¿« ¿Œµ¶Ω∫∏¶ √ ∞˙«œ¥¬ ∞™¿∏∑Œ ¡¶ø‹«œ∑¡ «’¥œ¥Ÿ." << endl;
+		return;
+	}
+	particle **newList = new particle*[size - 1];
+	for (int j = 0; j < i; j++)
+		newList[j] = List[j];
+	for (int j = i + 1; j < size; j++)
+		newList[j - 1] = List[j];
+	delete[] List;
+	List = newList;
+	size--;
+}
+
+//∆ƒ∆º≈¨ ∞¥√º∏¶ ªË¡¶ (πÃ±∏«ˆ. æ÷√ ø° ¿‘¿⁄¥¬ µø¿˚ «“¥Á«“ « ø‰∞° æ¯¥¬µ•...»˚¿Ã ∞°∫Ø¿˚¿Œ∞°?)
+//æ∆¥œ¥Ÿ. ªÁøÎ¿⁄ ¿‘∑¬¿ª πﬁ∞Ì «œ≥™æø ª˝º∫«ÿæﬂ «—¥Ÿ.. æ∆ ∏”∏Ææ∆∆ƒ
 void particleset::deleteparticle(particle &rhs)
 {
-	particle *pdelete = nullptr;
-	particle *ptr = HeadNode.pNext;
-	while (ptr->pNext == &rhs)
-		ptr = ptr->pNext;
-	pdelete = ptr->pNext;
-	ptr->pNext = rhs.pNext;
-	delete pdelete;
+	int i = findindex(rhs);
+	List[i] = 0;
+	removeparticle(i);
+}
+//¿‘∑¬πﬁ¿∫ ¿‘¿⁄¿« ∏ÆΩ∫∆Æ ¿Œµ¶Ω∫ √£±‚
+int particleset::findindex(const particle &rhs)
+{
+	int i = 0;
+	while (List[i] != rhs.id)
+		i++;
+	return i;
 }

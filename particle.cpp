@@ -3,27 +3,27 @@
 #include <iostream>
 using namespace std;
 
-//ìƒì„±ìì™€ ì†Œë©¸ì
-particle::particle() 
+//»ı¼ºÀÚ¿Í ¼Ò¸êÀÚ
+particle::particle()
 {
-	//cout << "ê¸°ë³¸ìƒì„±ì" << endl;
+	//cout << "±âº»»ı¼ºÀÚ" << endl;
 }
 
 particle::particle(double mass, double px, double py, double pv_x, double pv_y)
 	: m(mass), x(px), y(py), v_x(pv_x), v_y(pv_y)
 {
-	//cout << "ì¸ìë¥¼ ë°›ëŠ” ìƒì„±ì" << endl;
+	//cout << "ÀÎÀÚ¸¦ ¹Ş´Â »ı¼ºÀÚ" << endl;
 }
-particle::particle(const particle &rhs):m(rhs.m),x(rhs.x),y(rhs.y),v_x(rhs.v_x),v_y(rhs.v_y),f(rhs.f)
+particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), v_x(rhs.v_x), v_y(rhs.v_y), f(rhs.f), id(rhs.id)
 {
-	//cout << "ë³µì‚¬ ìƒì„±ì" << endl;
+	//cout << "º¹»ç »ı¼ºÀÚ" << endl;
 }
 particle::~particle()
 {
-	//cout << "ì†Œë©¸ì" << endl;
+	cout << "¼Ò¸êÀÚ" << endl;
 }
 
-//ë©”ì†Œë“œ
+//¸Ş¼Òµå
 void particle::printall()
 {
 	cout << "mass: " << m << endl;
