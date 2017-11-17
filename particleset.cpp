@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "particleset.h"
+#include <iostream>
 using namespace std;
 
 particleset::particleset()
@@ -30,7 +31,7 @@ void particleset::addparticle(particle& rhs)
 	pNode->pNext = HeadNode.pNext;
 	HeadNode.pNext = pNode;
 }
-//¼Â¿¡ ÀÖ´Â ÀÔÀÚµéÀ» ÇÁ¸°Æ®
+//ì…‹ì— ìˆëŠ” ì…ìë“¤ì„ í”„ë¦°íŠ¸
 void particleset::showmembers()
 {
 	cout << "showmembers()" << endl;
@@ -41,7 +42,7 @@ void particleset::showmembers()
 		ptr = ptr->pNext;
 	}
 }
-//ÆÄÆ¼Å¬À» ¼Â¿¡¼­ Á¦¿Ü
+//íŒŒí‹°í´ì„ ì…‹ì—ì„œ ì œì™¸
 particle& particleset::removeparticle(particle &rhs)
 {
 	particle *ptr = HeadNode.pNext;
@@ -51,7 +52,7 @@ particle& particleset::removeparticle(particle &rhs)
 	rhs.pNext = nullptr;
 	return rhs;
 }
-//ÆÄÆ¼Å¬À» »èÁ¦
+//íŒŒí‹°í´ì„ ì‚­ì œ
 void particleset::deleteparticle(particle &rhs)
 {
 	particle *pdelete = nullptr;
