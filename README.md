@@ -1,4 +1,4 @@
 # N-body simulation
-team: Kim,younghoo You,junwon Nam,myoeugjin
+Team: Younghoo Kim, Junwon You, Myoeugjin Nam
 
-due : 12/13
+Due : 12/13
