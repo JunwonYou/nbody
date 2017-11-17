@@ -1,3 +1,3 @@
 # nbody
-asdfsdf
-hjgfdsgrtyukhjgfjkhj
+Kimyounghoo Youjunwon Nam myoeugjin
+due : 12/13
