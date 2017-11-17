@@ -2,22 +2,25 @@
 #include "particle.h"
 #include "particleset.h"
 #include <iostream>
+#include <string>
+#include "UI.hpp"
 using namespace std;
 
 int main()
 {
-	double x = 1.2;
-	particle a(x, x, x);
-	particle b(3, 3, 3);
-	particleset s;
-	s.addparticle(a);
-	s.addparticle(b);
-	s.removeparticle(b);
-	cout << "b프린트" << endl;
-	b.printall();
-	s.deleteparticle(a);
-	cout << "a프린트" << endl;
-	a.printall();
-
-	return 0;
+    string commend;
+    char input_buffer[1024];
+    
+    while(true)
+    {
+        
+        cout << "Enter a commend: " ;
+        cin.getline(input_buffer,1024);
+        commend = input_buffer;
+        if (commend == "qq")
+            break;
+        
+        UI(commend);
+    }
 }
+
