@@ -2,8 +2,8 @@
 #include "particleset.h"
 #include <iostream>
 using namespace std;
-//particle °´Ã¼°¡ ÀÚ±âÀÇ ÁÖ¼Ò¸¦ ¸â¹ö Æ÷ÀÎÅÍ º¯¼ö·Î °®°í ÀÖ´Ù.
-//±× Æ÷ÀÎÅÍ º¯¼öµéÀ» ¹è¿­·Î ¸¸µé¾î ÀÔÀÚ °´Ã¼ ¸®½ºÆ®¸¦ °ü¸®ÇÏ´Â friend Å¬·¡½º
+//particle ê°ì²´ê°€ ìê¸°ì˜ ì£¼ì†Œë¥¼ ë©¤ë²„ í¬ì¸í„° ë³€ìˆ˜ë¡œ ê°–ê³  ìˆë‹¤.
+//ê·¸ í¬ì¸í„° ë³€ìˆ˜ë“¤ì„ ë°°ì—´ë¡œ ë§Œë“¤ì–´ ì…ì ê°ì²´ ë¦¬ìŠ¤íŠ¸ë¥¼ ê´€ë¦¬í•˜ëŠ” friend í´ë˜ìŠ¤
 
 particleset::particleset()
 {
@@ -31,27 +31,27 @@ void particleset::addparticle(particle& rhs)
 	}
 	size++;
 }
-//¼Â¿¡ ÀÖ´Â ÀÔÀÚµéÀ» ÇÁ¸°Æ®
+//ì…‹ì— ìˆëŠ” ì…ìë“¤ì„ í”„ë¦°íŠ¸
 void particleset::showmembers()
 {
-	cout << "¸ğµç ÀÔÀÚ ÇÁ¸°Æ®" << endl;
+	cout << "ëª¨ë“  ì…ì í”„ë¦°íŠ¸" << endl;
 	for (int i = 0; i < size; i++)
 	{
 		List[i]->printall();
 	}
 }
-//ÆÄÆ¼Å¬À» ¼Â¿¡¼­ Á¦¿Ü
+//íŒŒí‹°í´ì„ ì…‹ì—ì„œ ì œì™¸
 void particleset::removeparticle(particle &rhs)
 {	
 	int i = findindex(rhs);
 	removeparticle(i);
 }
-//ÀÎµ¦½º·Î Á¦¿Ü
+//ì¸ë±ìŠ¤ë¡œ ì œì™¸
 void particleset::removeparticle(int i)
 {
 	if (i >= size)
 	{
-		cout << "¸®½ºÆ®ÀÇ ÀÎµ¦½º¸¦ ÃÊ°úÇÏ´Â °ªÀ¸·Î Á¦¿ÜÇÏ·Á ÇÕ´Ï´Ù." << endl;
+		cout << "ë¦¬ìŠ¤íŠ¸ì˜ ì¸ë±ìŠ¤ë¥¼ ì´ˆê³¼í•˜ëŠ” ê°’ìœ¼ë¡œ ì œì™¸í•˜ë ¤ í•©ë‹ˆë‹¤." << endl;
 		return;
 	}
 	particle **newList = new particle*[size - 1];
@@ -64,15 +64,15 @@ void particleset::removeparticle(int i)
 	size--;
 }
 
-//ÆÄÆ¼Å¬ °´Ã¼¸¦ »èÁ¦ (¹Ì±¸Çö. ¾ÖÃÊ¿¡ ÀÔÀÚ´Â µ¿Àû ÇÒ´çÇÒ ÇÊ¿ä°¡ ¾ø´Âµ¥...ÈûÀÌ °¡º¯ÀûÀÎ°¡?)
-//¾Æ´Ï´Ù. »ç¿ëÀÚ ÀÔ·ÂÀ» ¹Ş°í ÇÏ³ª¾¿ »ı¼ºÇØ¾ß ÇÑ´Ù.. ¾Æ ¸Ó¸®¾ÆÆÄ
+//íŒŒí‹°í´ ê°ì²´ë¥¼ ì‚­ì œ (ë¯¸êµ¬í˜„. ì• ì´ˆì— ì…ìëŠ” ë™ì  í• ë‹¹í•  í•„ìš”ê°€ ì—†ëŠ”ë°...
+//ì•„ë‹ˆë‹¤. ì‚¬ìš©ì ì…ë ¥ì„ ë°›ê³  í•˜ë‚˜ì”© ìƒì„±í•´ì•¼ í•œë‹¤.. ì•„ ë¨¸ë¦¬ì•„íŒŒ
 void particleset::deleteparticle(particle &rhs)
 {
 	int i = findindex(rhs);
 	List[i] = 0;
 	removeparticle(i);
 }
-//ÀÔ·Â¹ŞÀº ÀÔÀÚÀÇ ¸®½ºÆ® ÀÎµ¦½º Ã£±â
+//ì…ë ¥ë°›ì€ ì…ìì˜ ë¦¬ìŠ¤íŠ¸ ì¸ë±ìŠ¤ ì°¾ê¸°
 int particleset::findindex(const particle &rhs)
 {
 	int i = 0;
