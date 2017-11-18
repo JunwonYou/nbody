@@ -1,32 +1,33 @@
-#include "stdafx.h"
-#include "particle.h"
+#include "particle.hpp"
 #include <iostream>
 using namespace std;
 
-//»ı¼ºÀÚ¿Í ¼Ò¸êÀÚ
+//ìƒì„±ìì™€ ì†Œë©¸ì
 particle::particle()
 {
-	//cout << "±âº»»ı¼ºÀÚ" << endl;
+	//cout << "ê¸°ë³¸ìƒì„±ì" << endl;
+	//wholeset count í˜¸ì¶œí•„ìš”
 }
 
-particle::particle(double mass, double px, double py, double pv_x, double pv_y)
-	: m(mass), x(px), y(py), v_x(pv_x), v_y(pv_y)
+particle::particle(double mass, double x, double y, double vx, double vy)
+	: m(mass), x(x), y(y), vx(vx), vy(vy)
 {
-	//cout << "ÀÎÀÚ¸¦ ¹Ş´Â »ı¼ºÀÚ" << endl;
+	//cout << "ì¸ìë¥¼ ë°›ëŠ” ìƒì„±ì" << endl;
+	//wholeset count í˜¸ì¶œí•„ìš”
 }
-particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), v_x(rhs.v_x), v_y(rhs.v_y), f(rhs.f), id(rhs.id)
+particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), v_x(rhs.vx), v_y(rhs.vy), f(rhs.f), id(rhs.id)
 {
-	//cout << "º¹»ç »ı¼ºÀÚ" << endl;
+	//cout << "ë³µì‚¬ ìƒì„±ì" << endl;
 }
 particle::~particle()
 {
-	cout << "¼Ò¸êÀÚ" << endl;
+	cout << "ì†Œë©¸ì" << endl;
 }
 
-//¸Ş¼Òµå
+//ë©”ì†Œë“œ
 void particle::printall()
 {
 	cout << "mass: " << m << endl;
 	cout << "x, y: " << x << ", " << y << endl;
-	cout << "v_x, v_y :" << v_x << ", " << v_y << endl;
+	cout << "v_x, v_y :" << vx << ", " << vy << endl;
 }
