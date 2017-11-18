@@ -20,14 +20,19 @@ void UI(string com)
         cout << "print memory usage" << endl;
     if (com_arr[0] == "pg")
         cout << "print wether gravity is enabled" << endl;
+    cout << "UI execution : " << com_arr[0] << endl;
     delete[] com_arr;
+    
+    
     return;
 }
 
 
-string* split(string com)
+string* split(string com) // 빈칸이 있는 명령어를 각각 나눠주는 함수. ex) input (xx s aa) >> ["xx", "s", "a"]
 {
-
+    
+    com = trim(com);
+    
     string* result = new string[10];
     char buffer[1024];
     int i;
@@ -35,20 +40,22 @@ string* split(string com)
     int index = 0;
     for (i = 0; i < com.length(); i++)
     {
+        
         if (i == com.length() -1)
         {
             buffer[j] = com[i];
             result[index] = buffer;
             buffer[0] = 0;
         }
+        
         if (com[i] != ' ' )
         {
             buffer[j] = com[i];
             j++;
         }
+        
         else
         {
-           
             result[index] = buffer;
             buffer[0] = 0;
             j = 0;
@@ -58,4 +65,30 @@ string* split(string com)
     }
     
         return result;
+}
+string trim(string& com) // input 스트링의 앞뒤 빈칸을 없애주는 함수.
+{
+    
+    for (int i = 0; i < com.length(); i++)
+    {
+        if (com[0] != ' ')
+            break;
+        
+        if (com[0] == ' ')
+        {
+            com.erase(0,1);
+        }
+    }
+    
+    for (int i = com.length()-1 ; i > -1; i-- )
+    {
+        if (com[i] != ' ')
+            break;
+        
+        if (com[i] == ' ')
+        {
+            com.erase(i,1);
+        }
+    }
+    return com;
 }
