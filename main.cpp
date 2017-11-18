@@ -1,6 +1,3 @@
-#include "stdafx.h"
-#include "particle.h"
-#include "particleset.h"
 #include <iostream>
 #include <string>
 #include "UI.hpp"
