@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "particleset.h"
 #include <iostream>
 using namespace std;
