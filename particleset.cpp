@@ -1,4 +1,4 @@
-#include "particleset.h"
+#include "particleset.hpp"
 #include <iostream>
 using namespace std;
 //particle 객체가 자기의 주소를 멤버 포인터 변수로 갖고 있다.
