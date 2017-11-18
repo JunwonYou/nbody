@@ -6,8 +6,12 @@ using namespace std;
 void UI(string com)
 {
     string* com_arr = split(com);
+    
     if (com_arr[0] == "pa")
+    {
         cout << "information about particle" << endl;
+        
+    }
     if (com_arr[0] == "pp")
         cout << "print information of particle <particle>" << endl;
     if (com_arr[0] == "ps")
@@ -20,6 +24,33 @@ void UI(string com)
         cout << "print memory usage" << endl;
     if (com_arr[0] == "pg")
         cout << "print wether gravity is enabled" << endl;
+    if (com_arr[0] == "ap")
+        cout << "add particle" << endl;
+    if (com_arr[0] == "as")
+        cout << "add set" << endl;
+    if (com_arr[0] == "ae")
+        cout << "add particle to set" << endl;
+    if (com_arr[0] == "af")
+        cout << "add force" << endl;
+    if (com_arr[0] == "dp")
+        cout << "delete particle" << endl;
+    if (com_arr[0] == "de")
+        cout << "delete particle from set" << endl;
+    if (com_arr[0] == "df")
+        cout << "delete force" << endl;
+    if (com_arr[0] == "da")
+        cout << "delete every particles, sets, forces" << endl;
+    if (com_arr[0] == "ct")
+        cout << "change time tick" << endl;
+    if (com_arr[0] == "cg")
+        cout << "turn on and off gravity" << endl;
+    if (com_arr[0] == "cp")
+        cout << "fix the location of a particle" << endl;
+    if (com_arr[0] == "ru")
+        cout << "run the simulation" << endl;
+    if (com_arr[0] == "rv")
+        cout << "run the simulatrion and print result" << endl;
+    
     cout << "UI execution : " << com_arr[0] << endl;
     delete[] com_arr;
     
@@ -28,7 +59,7 @@ void UI(string com)
 }
 
 
-string* split(string com) // 빈칸이 있는 명령어를 각각 나눠주는 함수. ex) input (xx s aa) >> ["xx", "s", "a"]
+string* split(string com)
 {
     
     com = trim(com);
@@ -66,7 +97,7 @@ string* split(string com) // 빈칸이 있는 명령어를 각각 나눠주는 �
     
         return result;
 }
-string trim(string& com) // input 스트링의 앞뒤 빈칸을 없애주는 함수.
+string trim(string& com)
 {
     
     for (int i = 0; i < com.length(); i++)
