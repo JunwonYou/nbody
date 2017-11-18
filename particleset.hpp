@@ -1,12 +1,11 @@
-#pragma once
 #include "particle.h"
 
 class particleset
 {
 private:
-	//ÀÔÀÚ °´Ã¼ÀÇ ÁÖ¼Ò¸¦ ¹ŞÀ» µ¿Àû ¸Ş¸ğ¸® °ø°£
+	//ì…ì ê°ì²´ì˜ ì£¼ì†Œë¥¼ ë°›ì„ ë™ì  ë©”ëª¨ë¦¬ ê³µê°„
 	particle **List = nullptr;
-	//¸Ş¸ğ¸®ÀÇ Å©±â ÀúÀåº¯¼ö
+	//ë©”ëª¨ë¦¬ì˜ í¬ê¸° ì €ì¥ë³€ìˆ˜
 	int size = 0;
 public:
 
