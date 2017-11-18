@@ -1,5 +1,3 @@
-
-
 class particle
 {
     friend class particleset;
