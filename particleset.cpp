@@ -1,81 +1,82 @@
+#include "stdafx.h"
 #include "particleset.hpp"
 #include <iostream>
 using namespace std;
-//particle ê°ì²´ê°€ ìê¸°ì˜ ì£¼ì†Œë¥¼ ë©¤ë²„ í¬ì¸í„° ë³€ìˆ˜ë¡œ ê°–ê³  ìˆë‹¤.
-//ê·¸ í¬ì¸í„° ë³€ìˆ˜ë“¤ì„ ë°°ì—´ë¡œ ë§Œë“¤ì–´ ì…ì ê°ì²´ ë¦¬ìŠ¤íŠ¸ë¥¼ ê´€ë¦¬í•˜ëŠ” friend í´ë˜ìŠ¤
+//particle °´Ã¼°¡ ÀÚ±âÀÇ ÁÖ¼Ò¸¦ ¸â¹ö Æ÷ÀÎÅÍ º¯¼ö·Î °®°í ÀÖ´Ù.
+//±× Æ÷ÀÎÅÍ º¯¼öµéÀ» ¹è¿­·Î ¸¸µé¾î ÀÔÀÚ °´Ã¼ ¸®½ºÆ®¸¦ °ü¸®ÇÏ´Â friend Å¬·¡½º
 
 particleset::particleset()
 {
 }
 particleset::~particleset()
 {
+	cout << "set" << setid << "¼Ò¸êÀÚ È£Ãâ" << endl;
 	delete[] List;
 }
 
-void particleset::addparticle(particle& rhs)
+void particleset::add(particle& rhs)
 {
 	if (List != nullptr)
 	{
-		particle **newList = new particle*[size+1];
-		for (int i = 0; i < size ; i++)
+		particle **newList = new particle*[Lsize + 1];
+		for (int i = 0; i < Lsize; i++)
 			newList[i] = List[i];
 		delete[] List;
-		newList[size] = rhs.id;
+		newList[Lsize] = rhs.ref;
 		List = newList;
 	}
 	else
 	{
-		List = new particle*[size+1];
-		List[0] = rhs.id;
+		List = new particle*[Lsize + 1];
+		List[0] = rhs.ref;
 	}
-	size++;
+	Lsize++;
 }
-//ì…‹ì— ìˆëŠ” ì…ìë“¤ì„ í”„ë¦°íŠ¸
+//¼Â¿¡ ÀÖ´Â ÀÔÀÚµéÀ» ÇÁ¸°Æ®
 void particleset::showmembers()
 {
-	cout << "ëª¨ë“  ì…ì í”„ë¦°íŠ¸" << endl;
-	for (int i = 0; i < size; i++)
+	cout << "------------¸ğµç ÀÔÀÚ ÇÁ¸°Æ®-------------" << endl;
+	for (int i = 0; i < Lsize; i++)
 	{
-		List[i]->printall();
+		List[i]->printinfor();
 	}
 }
-//íŒŒí‹°í´ì„ ì…‹ì—ì„œ ì œì™¸
-void particleset::removeparticle(particle &rhs)
-{	
-	int i = findindex(rhs);
-	removeparticle(i);
-}
-//ì¸ë±ìŠ¤ë¡œ ì œì™¸
-void particleset::removeparticle(int i)
+//¼Â¿¡ ÀÖ´Â ÀÔÀÚµéÀÇ ¾ÆÀÌµğ¸¦ Ãâ·Â
+void particleset::showid()
 {
-	if (i >= size)
-	{
-		cout << "ë¦¬ìŠ¤íŠ¸ì˜ ì¸ë±ìŠ¤ë¥¼ ì´ˆê³¼í•˜ëŠ” ê°’ìœ¼ë¡œ ì œì™¸í•˜ë ¤ í•©ë‹ˆë‹¤." << endl;
-		return;
-	}
-	particle **newList = new particle*[size - 1];
-	for (int j = 0; j < i; j++)
-		newList[j] = List[j];
-	for (int j = i + 1; j < size; j++)
-		newList[j - 1] = List[j];
-	delete[] List;
-	List = newList;
-	size--;
+	for (int i = 0; i < Lsize; i++)
+		cout << "ÀÔÀÚ id: "<<List[i]->id << " ";
+	cout << endl;
 }
 
-//íŒŒí‹°í´ ê°ì²´ë¥¼ ì‚­ì œ (ë¯¸êµ¬í˜„. ì• ì´ˆì— ì…ìëŠ” ë™ì  í• ë‹¹í•  í•„ìš”ê°€ ì—†ëŠ”ë°...
-//ì•„ë‹ˆë‹¤. ì‚¬ìš©ì ì…ë ¥ì„ ë°›ê³  í•˜ë‚˜ì”© ìƒì„±í•´ì•¼ í•œë‹¤.. ì•„ ë¨¸ë¦¬ì•„íŒŒ
-void particleset::deleteparticle(particle &rhs)
+//ÆÄÆ¼Å¬id¸¦ ¹Ş¾Æ ¼Â¿¡¼­ Á¦¿Ü
+
+void particleset::remove(int pid)
 {
-	int i = findindex(rhs);
-	List[i] = 0;
-	removeparticle(i);
+
+		particle **newList = new particle*[Lsize - 1];
+		int i = 0;
+		while (List[i]->id != pid)
+			i++;
+		for (int j = 0; j < i; j++)
+			newList[j] = List[j];
+		for (int j = i + 1; j < Lsize; j++)
+			newList[j - 1] = List[j];
+		delete[] List;
+		List = newList;
+		Lsize--;
 }
-//ì…ë ¥ë°›ì€ ì…ìì˜ ë¦¬ìŠ¤íŠ¸ ì¸ë±ìŠ¤ ì°¾ê¸°
-int particleset::findindex(const particle &rhs)
+
+//ÀÔ·Â¹ŞÀº id ÀÔÀÚ¸¦ ÁÖ¼Ò·Î ¹İÈ¯
+//Lsize¸¸Å­¸¸ for¹®À» ¹İº¹ÇÏ°í ¾øÀ¸¸é nullptr¹İÈ¯
+particle* particleset::findparticle(int pid)
 {
-	int i = 0;
-	while (List[i] != rhs.id)
-		i++;
-	return i;
+	int i;
+	for (i = 0; i < Lsize; i++)
+		if (List[i]->id == pid)
+			return List[i];
+	cout << pid << "ÀÔÀÚ°¡ ¾ø½À´Ï´Ù." << endl;
+	return nullptr;
 }
+
+

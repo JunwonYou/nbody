@@ -1,20 +1,23 @@
-#include "particle.h"
 
+#pragma once
+#include "particle.hpp"
 class particleset
 {
-private:
-	//ì…ì ê°ì²´ì˜ ì£¼ì†Œë¥¼ ë°›ì„ ë™ì  ë©”ëª¨ë¦¬ ê³µê°„
+	friend class whole;
+protected:
+	//ÀÔÀÚ °´Ã¼ÀÇ ÁÖ¼Ò¸¦ ¹ŞÀ» µ¿Àû ¸Ş¸ğ¸® °ø°£
 	particle **List = nullptr;
-	//ë©”ëª¨ë¦¬ì˜ í¬ê¸° ì €ì¥ë³€ìˆ˜
-	int size = 0;
-public:
+	//¸Ş¸ğ¸®ÀÇ Å©±â ÀúÀåº¯¼ö
+	particleset *setref = this;
+	int Lsize = 0;
 
+public:
+	int setid = 0;
 	particleset();
 	~particleset();
-	void addparticle(particle&);
-	void removeparticle(particle&);
-	void removeparticle(int);
-	void deleteparticle(particle&);
+	void add(particle&);
+	void remove(int);
 	void showmembers();
-	int findindex(const particle&);
+	void showid();
+	particle* findparticle(int);
 };
