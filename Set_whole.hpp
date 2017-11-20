@@ -2,28 +2,28 @@
 #include "Set_particle.hpp"
 #include <iostream>
 
-class Set_whole
+class Set_whole // This class is a base class of set_particle and has all the information of particles and sets.
 {
 private:
-	int setcount = 0; //set¿¡ ºÎ¿©ÇÒ ¹øÈ£
-	int pcount = 0; //ÀÔÀÚ¿¡ ºÎ¿©ÇÒ ¹øÈ£
+	int setcount = 0; //setì— ë¶€ì—¬í•  ë²ˆí˜¸
+	int pcount = 0; //ì…ìì— ë¶€ì—¬í•  ë²ˆí˜¸
 
-	Set_particle** Set_of_set; //setµéÀÇ set
-	Set_particle* particle_outset = nullptr; //ÀÔÀÚ »ı¼º ½Ã µé¾î°¥ ±âº» set
+	Set_particle** Set_of_set; //setë“¤ì˜ set
+	Set_particle* particle_outset = nullptr; //ì…ì ìƒì„± ì‹œ ë“¤ì–´ê°ˆ ê¸°ë³¸ set
 public:
 	Set_whole();
 	~Set_whole();
 	void create_particle(double, double, double, double = 0.0, double = 0.0);
 	void create_set();
 	Set_particle* find_set(int);
-	// ÀÔÀÚ¸¦ ±âº» setÀ¸·Î Á¦¿Ü
+	// ì…ìë¥¼ ê¸°ë³¸ setìœ¼ë¡œ ì œì™¸
 	void remove_particle(int, int);
-	// ÀÔÀÚ¸¦ »èÁ¦
+	// ì…ìë¥¼ ì‚­ì œ
 	void delete_particle(int, int);
 	void print_all();
-	//±âº»set¿¡ ÀÖ´Â ÀÔÀÚ¸¦ ¿øÇÏ´Â setÀ¸·Î ÀÌµ¿
+	//ê¸°ë³¸setì— ìˆëŠ” ì…ìë¥¼ ì›í•˜ëŠ” setìœ¼ë¡œ ì´ë™
 	void add_particle(int, int);
-	//ÁÖ¾îÁø ÀÎµ¦½ºÀÇ ÀÔÀÚ°¡ ÀÖ´ÂÁö È®ÀÎ
+	//ì£¼ì–´ì§„ ì¸ë±ìŠ¤ì˜ ì…ìê°€ ìˆëŠ”ì§€ í™•ì¸
 	int check(int, int);
 
 };
