@@ -9,12 +9,12 @@ particle::particle()
 	//cout << "기본생성자" << endl;
 }
 
-particle::particle(double mass, double px, double py, double pv_x, double pv_y)
-	: m(mass), x(px), y(py), v_x(pv_x), v_y(pv_y)
+particle::particle(double mass, double px, double py, double pvx, double pvy)
+	: m(mass), x(px), y(py), vx(pvx), vy(pvy)
 {
 	//cout << "인자를 받는 생성자" << endl;
 }
-particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), v_x(rhs.v_x), v_y(rhs.v_y), f(rhs.f), id(rhs.id)
+particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), vx(rhs.vx), vy(rhs.vy), f(rhs.f), id(rhs.id)
 {
 	//cout << "복사 생성자" << endl;
 }
@@ -24,9 +24,9 @@ particle::~particle()
 }
 
 //메소드
-void particle::printinfor()
+void particle::print_infor()
 {
 	cout << "particle " << id << endl;
 	cout << "mass: " << m << " x, y: " << x << ", " << y << endl;
-	cout << "v_x, v_y :" << v_x << ", " << v_y << endl;
+	cout << "vx, vy :" << vx << ", " << vy << endl;
 }
