@@ -1,6 +1,6 @@
 #pragma once
 
-class particle
+class particle // Class of partices.
 {
 	friend class Set_whole;
 	friend class Set_particle;
