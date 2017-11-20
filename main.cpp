@@ -1,23 +1,18 @@
+#include "stdafx.h"
+#include "particle.h"
+#include "particleset.h"
 #include <iostream>
+#include "whole.h"
 #include <string>
-#include "UI.hpp"
+#include "UI.h"
 using namespace std;
 
 int main()
 {
-    string commend;
-    char input_buffer[1024];
-    
-    while(true)
-    {
-        
-        cout << "Enter a commend: " ;
-        cin.getline(input_buffer,1024);
-        commend = input_buffer;
-        if (commend == "qq")
-            break;
-        
-        UI(commend);
-    }
+	whole a;
+	a.createparticle(2, 2, 2, 2);
+	a.createset();
+	a.BaseSet[0]->showmembers();
+	cout << "mainÇÔ¼ö ³¡" << endl;
+	return 0;
 }
-
