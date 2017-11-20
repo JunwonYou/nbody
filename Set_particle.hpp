@@ -1,13 +1,13 @@
 
 #pragma once
 #include "particle.hpp"
-class Set_particle
+class Set_particle // particleì˜ ëª¨ìŒ
 {
 	friend class Set_whole;
 protected:
-	//ÀÔÀÚ °´Ã¼ÀÇ ÁÖ¼Ò¸¦ ¹ŞÀ» µ¿Àû ¸Ş¸ğ¸® °ø°£
+	//ì…ì ê°ì²´ì˜ ì£¼ì†Œë¥¼ ë°›ì„ ë™ì  ë©”ëª¨ë¦¬ ê³µê°„
 	particle **List = nullptr;
-	//¸Ş¸ğ¸®ÀÇ Å©±â ÀúÀåº¯¼ö
+	//ë©”ëª¨ë¦¬ì˜ í¬ê¸° ì €ì¥ë³€ìˆ˜
 	Set_particle
 		*setref = this;
 	int Lsize = 0;
