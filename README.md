@@ -3,7 +3,7 @@ Team: Younghoo Kim, Junwon You, Myoeugjin Nam
 
 Due : 12/13
 ----------------------------------------------------------------------------------------------
-Nbody simulation 2017/11/21 변경사항
+# Nbody simulation 2017/11/21 변경사항
 
 1.  double형 f  ->  double force_p[2]
 	파티클 내의 f 변수를 set이 일괄적으로 주는 힘과 구분하기 위해 이름을 바꿈
@@ -20,7 +20,7 @@ Nbody simulation 2017/11/21 변경사항
 	입력된 force들을 저장할 배열 force_s 추가
 	force_s 배열의 길이를 나타낼 num_f 변수 추가
 
-* 추가해야할 사항
+# 추가해야할 사항
 
 (Set_whole 클래스)
 
