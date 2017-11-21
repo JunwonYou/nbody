@@ -45,7 +45,7 @@ void Set_particle::showmembers()
 void Set_particle::showid()
 {
 	for (int i = 0; i < Lsize; i++)
-		cout << "ÀÔÀÚ id: " << List[i]->id << " ";
+		cout << "particle: " << List[i]->id << "	";
 	cout << endl;
 }
 

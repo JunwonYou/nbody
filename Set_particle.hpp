@@ -1,17 +1,18 @@
 
 #pragma once
 #include "particle.hpp"
-class Set_particle // particleì˜ ëª¨ìŒ
+class Set_particle
 {
 	friend class Set_whole;
 protected:
-	//ì…ì ê°ì²´ì˜ ì£¼ì†Œë¥¼ ë°›ì„ ë™ì  ë©”ëª¨ë¦¬ ê³µê°„
+	//ÀÔÀÚ °´Ã¼ÀÇ ÁÖ¼Ò¸¦ ¹ŞÀ» µ¿Àû ¸Ş¸ğ¸® °ø°£
 	particle **List = nullptr;
-	//ë©”ëª¨ë¦¬ì˜ í¬ê¸° ì €ì¥ë³€ìˆ˜
+	//¸Ş¸ğ¸®ÀÇ Å©±â ÀúÀåº¯¼ö
 	Set_particle
 		*setref = this;
 	int Lsize = 0;
-
+	double** force_s = nullptr;
+	int num_f = 0;
 public:
 	int setid = 0;
 	Set_particle();

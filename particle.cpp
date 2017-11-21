@@ -14,7 +14,7 @@ particle::particle(double mass, double px, double py, double pvx, double pvy)
 {
 	//cout << "인자를 받는 생성자" << endl;
 }
-particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), vx(rhs.vx), vy(rhs.vy), f(rhs.f), id(rhs.id)
+particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), vx(rhs.vx), vy(rhs.vy), force_p(rhs.force_p), id(rhs.id)
 {
 	//cout << "복사 생성자" << endl;
 }

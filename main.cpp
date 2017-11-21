@@ -16,8 +16,7 @@ int main()
 	a.print_all();
 	a.add_particle(1, 0);
 	a.print_all();
-	a.remove_particle(1, 0);
-	a.print_all();
 	cout << "mainÇÔ¼ö ³¡" << endl;
+	cout << sizeof(float) << endl;
 	return 0;
 }

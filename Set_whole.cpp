@@ -10,6 +10,7 @@ Set_whole::Set_whole()
 
 Set_whole::~Set_whole()
 {
+	cout << "whole 소멸자" << endl;
 	//베이스셋에 있는 셋을 역순으로 참조하여 입자를 지우고 셋까지 삭제
 	for (int i = setcount; i >= 0; i--)
 	{
@@ -19,8 +20,8 @@ Set_whole::~Set_whole()
 		//Set_of_set[i]->~Set_particle();
 		delete Set_of_set[i];
 	}
-
-	//베이스 셋 삭제
+	cout << "Set of Set 삭제" << endl;
+	// Set of Set 삭제
 	delete[] Set_of_set;
 }
 //입자를 동적 생성하여 기본 set에 넣는다.
@@ -92,7 +93,7 @@ void Set_whole::print_all()
 	cout << "*********set과 입자 목록**********" << endl;
 	for (int i = 0; i <= setcount; i++)
 	{
-		std::cout << "SetID: " << Set_of_set[i]->setid << "  (입자의 개수: " << Set_of_set[i]->Lsize << ")" << std::endl;
+		std::cout << "Set: " << Set_of_set[i]->setid << "  (입자의 개수: " << Set_of_set[i]->Lsize << ")" << std::endl;
 		Set_of_set[i]->showid();
 	}
 	cout << "**********************************" << endl;
