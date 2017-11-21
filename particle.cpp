@@ -3,27 +3,27 @@
 #include <iostream>
 using namespace std;
 
-//»ı¼ºÀÚ¿Í ¼Ò¸êÀÚ
+//ìƒì„±ìì™€ ì†Œë©¸ì
 particle::particle()
 {
-	//cout << "±âº»»ı¼ºÀÚ" << endl;
+	//cout << "ê¸°ë³¸ìƒì„±ì" << endl;
 }
 
 particle::particle(double mass, double px, double py, double pvx, double pvy)
 	: m(mass), x(px), y(py), vx(pvx), vy(pvy)
 {
-	//cout << "ÀÎÀÚ¸¦ ¹Ş´Â »ı¼ºÀÚ" << endl;
+	//cout << "ì¸ìë¥¼ ë°›ëŠ” ìƒì„±ì" << endl;
 }
-particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), vx(rhs.vx), vy(rhs.vy), force_p(rhs.force_p), id(rhs.id)
+particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), vx(rhs.vx), vy(rhs.vy), id(rhs.id)
 {
-	//cout << "º¹»ç »ı¼ºÀÚ" << endl;
+	//cout << "ë³µì‚¬ ìƒì„±ì" << endl;
 }
 particle::~particle()
 {
-	cout << id << "ÀÔÀÚÀÇ ¼Ò¸êÀÚ" << endl;
+	cout << id << "ì…ìì˜ ì†Œë©¸ì" << endl;
 }
 
-//¸Ş¼Òµå
+//ë©”ì†Œë“œ
 void particle::print_infor()
 {
 	cout << "particle " << id << endl;
