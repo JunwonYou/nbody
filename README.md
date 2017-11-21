@@ -2,7 +2,7 @@
 Team: Younghoo Kim, Junwon You, Myoeugjin Nam
 
 Due : 12/13
-
+----------------------------------------------------------------------------------------------
 Nbody simulation 2017/11/21 변경사항
 
 1.  double형 f  ->  double force_p[2]
