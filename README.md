@@ -46,8 +46,19 @@ Calculate()에서는 모든 입자를 조회하여 Set에서 일괄적으로 주
 
 fixation의 on/off 상태에 따라 각 입자의 위치와 속도를 변경한다.
 
-## 3. Gravity() 구현 // 힘 변화
-	
+## 3. char형 변수 gravity 추가, Gravity() 구현 // 힘 변화
+fixation과 같은 역할로, gravity가 1이면 Calculate()함수 안에서 Gravity()가 호출된다.
+
+gravity가 0이면 Gravity()함수 없이 계산한다.
+
+Gravity()함수는 입자 전체를 조회하여 각 입자마다 상호작용하는 힘을 해당 입자에 전달해준다.
+
+
+force_p는 이전 값과 무관하게 현재 입자들의 상대위치에 따라 정해지는 값이므로,
+
+gravity()함수 호출 시 모든 입자들의 force_p를 0으로 초기화하고 
+
+for문으로 실행하면서 입자간의 중력힘이 정해지면 각각 두 입자의 force_p에 더해지는 방식으로 할 것이다.
 
 ## 4. add_force(), delete_force()
 
