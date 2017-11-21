@@ -6,19 +6,23 @@ Due : 12/13
 # Nbody simulation 2017/11/21 변경사항
 
 1.  double형 f  ->  double force_p[2]
-	파티클 내의 f 변수를 set이 일괄적으로 주는 힘과 구분하기 위해 이름을 바꿈
+
+파티클 내의 f 변수를 set이 일괄적으로 주는 힘과 구분하기 위해 이름을 바꿈
 
 2.  particle 멤버 변수로 char형 변수 pixation를 추가
-	위치 고정 설정 구현을 위해 추가, on/off만 있으면 되므로 크기가 작은 char형 변수를 선택함
 
-3.	set과 particle 정보 출력 양식을 수정함
+위치 고정 설정 구현을 위해 추가, on/off만 있으면 되므로 크기가 작은 char형 변수를 선택함
+
+
+3.set과 particle 정보 출력 양식을 수정함
 
 4.	Set_whole 클래스에 int형 변수 t_unit을 추가
-	시뮬레이션 연산의 단위시간. 계산 오류 가능성을 줄이기 위해 int형으로 선언하고, 대신 단위를 작게 1ms정도로 생각할 것임.
+
+시뮬레이션 연산의 단위시간. 계산 오류 가능성을 줄이기 위해 int형으로 선언하고, 대신 단위를 작게 1ms정도로 생각할 것임.
 	
 5. (Set_particle 클래스)에 double**형 force_s, int형 num_f 변수 추가
-	입력된 force들을 저장할 배열 force_s 추가
-	force_s 배열의 길이를 나타낼 num_f 변수 추가
+입력된 force들을 저장할 배열 force_s 추가
+force_s 배열의 길이를 나타낼 num_f 변수 추가
 
 # 추가해야할 사항
 
