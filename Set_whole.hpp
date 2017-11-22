@@ -7,7 +7,7 @@ class Set_whole
 private:
 	int setcount = 0; //set에 부여할 번호
 	int pcount = 0; //입자에 부여할 번호
-
+	char gravity = 0; //중력 on/off 설정값
 	Set_particle** Set_of_set; //set들의 set
 	Set_particle* particle_outset = nullptr; //입자 생성 시 들어갈 기본 set
 public:
@@ -25,5 +25,12 @@ public:
 	void add_particle(int, int);
 	//주어진 인덱스의 입자가 있는지 확인
 	int check(int, int);
-	const int t_unit = 1;
+	int t_tick = 1000; // 출력 시간 주기, 단위는 ms 이다. 기본값은 1초
+	//set에 force 생성/ 삭제
+	void add_force(int, double, double, int);
+	void delete_force(int, int);
+	//시뮬레이션 연산
+	void Calculate(int);
+	//입자 간 중력 상호작용 계산
+	void Gravity();
 };

@@ -26,5 +26,5 @@ private:
 	double force_p[2] = { 0.0,0.0 };  //입자끼리의 상호작용으로 받는 힘
 	particle *ref = this;//자기자신의 주소를 멤버변수로 가지고 있다.
 	int id = -1;	   // whole에서 입자 생성 시 부여받을 유일한 id 
-	char pixation = 0; // 1이면 시뮬레이션시 고정되어 x,y 좌표 변화 없음, 0이면 고정 해제
+	char fixation = 0; // 1이면 시뮬레이션시 고정되어 x,y 좌표 변화 없음, 0이면 고정 해제
 };

@@ -11,7 +11,18 @@ Set_particle::Set_particle()
 Set_particle::~Set_particle()
 {
 	cout << "set" << setid << "소멸자 호출" << endl;
-	delete[] List;
+	if (List)
+		delete[] List;
+	if (fList)
+	{
+		for (int i = 0; i < num_f; i++)
+		{
+			cout << "force" << fList[i]->fid << " 제거" << endl;
+			delete[] fList[i];
+		}
+		delete[] fList;
+			
+	}
 }
 
 void Set_particle::add(particle& rhs)
@@ -45,7 +56,7 @@ void Set_particle::showmembers()
 void Set_particle::showid()
 {
 	for (int i = 0; i < Lsize; i++)
-		cout << "particle: " << List[i]->id << "	";
+		cout << "particle" << List[i]->id << "	";
 	cout << endl;
 }
 
@@ -79,4 +90,24 @@ particle* Set_particle::findparticle(int pid)
 	return nullptr;
 }
 
+void Set_particle::showforce()
+{
+	for (int i = 0; i < num_f; i++)
+		cout << "force" << fList[i]->fid << "	";
+	cout << endl;
+}
+double Set_particle::getforce_x()
+{
+	double sumx =0.0;
+	for (int i = 0; i < num_f; i++)
+		sumx += fList[i]->fx;
+	return sumx;
+}
 
+double Set_particle::getforce_y()
+{
+	double sumy = 0.0;
+	for (int i = 0; i < num_f; i++)
+		sumy += fList[i]->fy;
+	return sumy;
+}

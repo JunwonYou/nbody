@@ -15,8 +15,12 @@ int main()
 	a.create_set();
 	a.print_all();
 	a.add_particle(1, 0);
+	a.add_force(1, 4.4, 4.1, 1);
+	a.print_all();
+	a.delete_force(1, 1);
+	a.add_force(1, 3, 4, 0);
 	a.print_all();
 	cout << "mainÇÔ¼ö ³¡" << endl;
-	cout << sizeof(float) << endl;
+
 	return 0;
 }

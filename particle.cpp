@@ -3,30 +3,30 @@
 #include <iostream>
 using namespace std;
 
-//ìƒì„±ìì™€ ì†Œë©¸ì
+//»ı¼ºÀÚ¿Í ¼Ò¸êÀÚ
 particle::particle()
 {
-	//cout << "ê¸°ë³¸ìƒì„±ì" << endl;
+	//cout << "±âº»»ı¼ºÀÚ" << endl;
 }
 
 particle::particle(double mass, double px, double py, double pvx, double pvy)
 	: m(mass), x(px), y(py), vx(pvx), vy(pvy)
 {
-	//cout << "ì¸ìë¥¼ ë°›ëŠ” ìƒì„±ì" << endl;
+	//cout << "ÀÎÀÚ¸¦ ¹Ş´Â »ı¼ºÀÚ" << endl;
 }
 particle::particle(particle &rhs) : m(rhs.m), x(rhs.x), y(rhs.y), vx(rhs.vx), vy(rhs.vy), id(rhs.id)
 {
-	//cout << "ë³µì‚¬ ìƒì„±ì" << endl;
+	//cout << "º¹»ç »ı¼ºÀÚ" << endl;
 }
 particle::~particle()
 {
-	cout << id << "ì…ìì˜ ì†Œë©¸ì" << endl;
+	cout << id << "ÀÔÀÚÀÇ ¼Ò¸êÀÚ" << endl;
 }
 
-//ë©”ì†Œë“œ
+//¸Ş¼Òµå
 void particle::print_infor()
 {
-	cout << "particle " << id << endl;
-	cout << "mass: " << m << " x, y: " << x << ", " << y << endl;
+	cout << "particle " << id <<" mass: "<<m<< endl;
+	cout << "x, y: " << x << ", " << y << endl;
 	cout << "vx, vy :" << vx << ", " << vy << endl;
 }
