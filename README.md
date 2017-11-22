@@ -3,6 +3,35 @@ Team: Younghoo Kim, Junwon You, Myoeugjin Nam
 
 Due : 12/13
 ----------------------------------------------------------------------------------------------
+
+# Nbody simulation 2017/11/22 변경사항
+
+## 1. add_force(), delete_force() 구현 (Set_whole의 메소드)
+
+## 2. showforce()함수 추가	(Set_particle의 메소드)
+
+printall에 force 목록도 출력되도록 수정
+
+## 3. Set_particle의 소멸자 수정
+
+List나 fList가 가리키는 대상이 있으면 delete[] 하도록 수정했음.
+
+## 4.(Set_particle 클래스)에 구조체 force_s, 구조체 포인터 fList, int형 num_f 변수 추가
+
+입력된 id 와 force들을 저장할 구조체 force_s 추가
+
+force_s를 저장할 배열 fList 추가
+
+fList의 길이를 나타낼 num_f 변수 추가
+
+## 5. Set_particle에 getforce 추가
+
+fList에 있는 모든 힘들의 합을 double형 배열로 반환.
+
+
+
+
+---------------------------------------------------------------------------------------------
 # Nbody simulation 2017/11/21 변경사항
 
 ## 1.  double형 f  ->  double force_p[2]
