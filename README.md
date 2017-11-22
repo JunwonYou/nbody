@@ -14,7 +14,7 @@ printall에 force 목록도 출력되도록 수정
 
 ## 3. Set_particle의 소멸자 수정
 
-List나 fList가 가리키는 대상이 있으면 delete[] 하도록 수정했음.
+List나 fList가 가리키는 대상이 있을 때만 delete[] 하도록 수정했음.
 
 ## 4.(Set_particle 클래스)에 구조체 force_s, 구조체 포인터 fList, int형 num_f 변수 추가
 
