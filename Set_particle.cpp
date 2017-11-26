@@ -27,7 +27,7 @@ Set_particle::~Set_particle()
 
 void Set_particle::add(particle& rhs)
 {
-	if (List != nullptr)  // -> if (List)
+	if (List != nullptr)  // ############# -> if (List)
 	{
 		particle **newList = new particle*[Lsize + 1];
 		for (int i = 0; i < Lsize; i++)
@@ -38,7 +38,7 @@ void Set_particle::add(particle& rhs)
 	}
 	else
 	{
-		List = new particle*[Lsize + 1]; // -> List = new particle*[1];
+		List = new particle*[Lsize + 1]; // ############# -> List = new particle*[1];
 		List[0] = rhs.ref;
 	}
 	Lsize++;
@@ -62,7 +62,7 @@ void Set_particle::showid()
 
 //파티클id를 받아 셋에서 제외
 
-void Set_particle::remove(int pid) // ID를 인자로 안받고 particle object를 인자로 받는것은 안돼??
+void Set_particle::remove(int pid) // ############# ID를 인자로 안받고 particle object를 인자로 받는것은 안돼??
 {
 
 	particle **newList = new particle*[Lsize - 1];
