@@ -3,22 +3,22 @@
 #include "particle.hpp"
 class Set_particle
 {
-	friend class Set_whole; // wholeÀÌ Á¦ÇÑ¾øÀÌ Á¢±ÙÇÏµµ·Ï Çã¿ë
-	//setÀÌ °¡Áú ÈûÀ» ÀúÀåÇÒ ±¸Á¶Ã¼ ¼±¾ð
+	friend class Set_whole; // wholeì´ ì œí•œì—†ì´ ì ‘ê·¼í•˜ë„ë¡ í—ˆìš©
+	//setì´ ê°€ì§ˆ íž˜ì„ ì €ìž¥í•  êµ¬ì¡°ì²´ ì„ ì–¸
 	struct force_s
 	{
 		int fid = -1;
 		double fx;
 		double fy;
 	};
-	force_s** fList = nullptr;	//setÀÌ ¹Þ´Â forceÀÇ ¸ñ·Ï, ³ªÁß¿¡ ÀÌ ¸®½ºÆ®°¡ nullptrÀÎÁö ¾Æ´ÑÁö¿¡ µû¶ó delete[]¸¦ ³ªÁß¿¡ ÇØÁà¾ßÇÑ´Ù.
-	int num_f = 0;	//forceÀÇ °³¼ö	
+	force_s** fList = nullptr;	//setì´ ë°›ëŠ” forceì˜ ëª©ë¡, ë‚˜ì¤‘ì— ì´ ë¦¬ìŠ¤íŠ¸ê°€ nullptrì¸ì§€ ì•„ë‹Œì§€ì— ë”°ë¼ delete[]ë¥¼ ë‚˜ì¤‘ì— í•´ì¤˜ì•¼í•œë‹¤.
+	int num_f = 0;	//forceì˜ ê°œìˆ˜	
 	
-	//ÀÔÀÚ °´Ã¼ÀÇ ÁÖ¼Ò¸¦ ¹ÞÀ» µ¿Àû ¸Þ¸ð¸® °ø°£
+	//ìž…ìž ê°ì²´ì˜ ì£¼ì†Œë¥¼ ë°›ì„ ë™ì  ë©”ëª¨ë¦¬ ê³µê°„
 	particle **List = nullptr;
-	//¸Þ¸ð¸®ÀÇ Å©±â ÀúÀåº¯¼ö
+	//ë©”ëª¨ë¦¬ì˜ í¬ê¸° ì €ìž¥ë³€ìˆ˜
 	Set_particle
-		*setref = this;
+		*setref = this; // ############# -> ë³€ìˆ˜ ì„ ì–¸ í•œì¤„ë¡œ
 	int Lsize = 0;
 
 public:
