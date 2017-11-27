@@ -15,12 +15,12 @@ Set_whole::Set_whole()
 
 Set_whole::~Set_whole()
 {
-	//cout << "whole ì†Œë©¸ì" << endl;
-	//ë² ì´ìŠ¤ì…‹ì— ìˆëŠ” ì…‹ì„ ì—­ìˆœìœ¼ë¡œ ì°¸ì¡°í•˜ì—¬ ì…ìë¥¼ ì§€ìš°ê³  ì…‹ê¹Œì§€ ì‚­ì œ
+	//cout << "whole ¼Ò¸êÀÚ" << endl;
+	//º£ÀÌ½º¼Â¿¡ ÀÖ´Â ¼ÂÀ» ¿ª¼øÀ¸·Î ÂüÁ¶ÇÏ¿© ÀÔÀÚ¸¦ Áö¿ì°í ¼Â±îÁö »èÁ¦
 	int ss = setcount;
 	for (int i = 0; i < ss; i++)
 	{
-		//std::cout << i << "ë²ˆì§¸ ì…‹ ì°¨ë¡€" << std::endl;
+		//std::cout << i << "¹øÂ° ¼Â Â÷·Ê" << std::endl;
 		for (int j = 0; j < Set_of_set[i]->Lsize; j++)
 		{
 			delete Set_of_set[i]->List[j];
@@ -28,7 +28,7 @@ Set_whole::~Set_whole()
 		}
 		for (int f = 0; f < Set_of_set[i]->num_f; f++)
 		{
-			//cout << "force<" << Set_of_set[i]->fList[f]->fid << "> ì œê±°" << endl;
+			//cout << "force<" << Set_of_set[i]->fList[f]->fid << "> Á¦°Å" << endl;
 			delete Set_of_set[i]->fList[f];
 			fcount--;
 		}
@@ -38,11 +38,11 @@ Set_whole::~Set_whole()
 	}
 	setcount++;
 	cout << "All forces deleted" << endl << "All set deleted" << endl << "All particle deleted" << endl;
-	// Set of Set ì‚­ì œ
+	// Set of Set »èÁ¦
 	print_memory();
 	delete[] Set_of_set;
 }
-//ì…ìë¥¼ ë™ì  ìƒì„±í•˜ì—¬ ê¸°ë³¸ setì— ë„£ëŠ”ë‹¤.
+//ÀÔÀÚ¸¦ µ¿Àû »ı¼ºÇÏ¿© ±âº» set¿¡ ³Ö´Â´Ù.
 void Set_whole::create_particle(string id, double m, double x, double y, double v_x, double v_y)
 {
 	for (int i = 0; i < setcount; i++)
@@ -57,7 +57,7 @@ void Set_whole::create_particle(string id, double m, double x, double y, double 
 	particle_outset->add(*a);
 	cout << "Particle " << a->id << " added" << endl;
 }
-//setì„ ìƒì„±í•˜ì—¬ Set_of_setì— ë„£ëŠ”ë‹¤.
+//setÀ» »ı¼ºÇÏ¿© Set_of_set¿¡ ³Ö´Â´Ù.
 void Set_whole::create_set(string setid)
 {
 	
@@ -78,25 +78,25 @@ void Set_whole::create_set(string setid)
 	Set_of_set = nBase;
 	cout << "Set " << Set_of_set[setcount-1]->setid << " added" << endl;
 }
-//ë² ì´ìŠ¤ ì…‹ì„ ì¡°íšŒí•˜ì—¬ ì…ë ¥ëœ setidë¥¼ ê°–ëŠ” setì˜ ì£¼ì†Œë¥¼ ë°˜í™˜í•œë‹¤.
+//º£ÀÌ½º ¼ÂÀ» Á¶È¸ÇÏ¿© ÀÔ·ÂµÈ setid¸¦ °®´Â setÀÇ ÁÖ¼Ò¸¦ ¹İÈ¯ÇÑ´Ù.
 Set_particle* Set_whole::find_set(string psetid)
 {
 	int i;
 	for (i = 0; i < setcount; i++)
 		if (Set_of_set[i]->setid == psetid)
 			return Set_of_set[i];
-	cout << psetid << "ì¸ setì´ ì—†ìŠµë‹ˆë‹¤." << endl;
+	cout << psetid << "ÀÎ setÀÌ ¾ø½À´Ï´Ù." << endl;
 	return nullptr;
 }
 
-//ê¸°ë³¸ setìœ¼ë¡œ ì…ìë¥¼ ì˜®ê¸´ë‹¤.
+//±âº» setÀ¸·Î ÀÔÀÚ¸¦ ¿Å±ä´Ù.
 void Set_whole::remove_particle(string psetid, string pid)
 {
 	int a = check(psetid, pid);
 	if (a == 0)
-		cout << psetid << "setì´ ì—†ì–´ ì œì™¸í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
+		cout << psetid << "setÀÌ ¾ø¾î Á¦¿ÜÇÒ ¼ö ¾ø½À´Ï´Ù." << endl;
 	else if (a == 1)
-		cout << psetid << "setì— " << pid << "ì…ìê°€ ì—†ì–´ì„œ ì œì™¸í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
+		cout << psetid << "set¿¡ " << pid << "ÀÔÀÚ°¡ ¾ø¾î¼­ Á¦¿ÜÇÒ ¼ö ¾ø½À´Ï´Ù." << endl;
 	else
 	{
 		cout << "Particle " << pid << " is deleted from set " << psetid << endl;
@@ -104,14 +104,14 @@ void Set_whole::remove_particle(string psetid, string pid)
 		find_set(psetid)->remove(pid);
 	}
 }
-//ì…ì ê°ì²´ë¥¼ ì‚­ì œí•œë‹¤.
+//ÀÔÀÚ °´Ã¼¸¦ »èÁ¦ÇÑ´Ù.
 void Set_whole::delete_particle(string psetid, string pid)
 {
 	int a = check(psetid, pid);
 	if (a == 0)
-		cout << psetid << "setì´ ì—†ì–´ ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
+		cout << psetid << "setÀÌ ¾ø¾î »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù." << endl;
 	else if (a == 1)
-		cout << psetid << "setì— " << pid << "ì…ìê°€ ì—†ì–´ì„œ ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
+		cout << psetid << "set¿¡ " << pid << "ÀÔÀÚ°¡ ¾ø¾î¼­ »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù." << endl;
 	else
 	{
 		particle* a = find_set(psetid)->findparticle(pid)->ref;
@@ -121,7 +121,7 @@ void Set_whole::delete_particle(string psetid, string pid)
 		pcount--;
 	}
 }
-//ì…‹ê³¼ ì…ì í˜ì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜
+//¼Â°ú ÀÔÀÚ ÈûÀÇ °³¼ö¸¦ ¹İÈ¯
 void Set_whole::print_memory()
 {
 	cout << "Particles: " << pcount << endl;
@@ -132,9 +132,9 @@ void Set_whole::add_particle(string psetid, string pid)
 {
 
 	if (psetid == "outset")
-		cout << "outset(set<0>)ì— ì¶”ê°€í•˜ë ¤ë©´ ap ë¥¼ ì…ë ¥í•˜ì„¸ìš”." << endl;
+		cout << "outset(set<0>)¿¡ Ãß°¡ÇÏ·Á¸é ap ¸¦ ÀÔ·ÂÇÏ¼¼¿ä." << endl;
 	else if (particle_outset->findparticle(pid) == nullptr)
-		cout << pid << "outsetì— ìˆëŠ” ì…ìë§Œ ë‹¤ë¥¸ setì— ì˜®ê¸¸ ìˆ˜ ìˆìŠµë‹ˆë‹¤." << endl;
+		cout << pid << "outset¿¡ ÀÖ´Â ÀÔÀÚ¸¸ ´Ù¸¥ set¿¡ ¿Å±æ ¼ö ÀÖ½À´Ï´Ù." << endl;
 	else
 	{
 		find_set(psetid)->add(*particle_outset->findparticle(pid));
@@ -189,7 +189,7 @@ void Set_whole::delete_force(string pfid, string psetid)
 	Set_particle* rhs = find_set(psetid);
 	if (rhs == nullptr)
 	{
-		cout << "set" << psetid << "ê°€ ì—†ì–´ì„œ force ì œê±°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤." << endl;
+		cout << "set" << psetid << "°¡ ¾ø¾î¼­ force Á¦°Å¿¡ ½ÇÆĞÇß½À´Ï´Ù." << endl;
 		return;
 	}
 	for (int i = 0; i < rhs->num_f; i++)
@@ -209,7 +209,7 @@ void Set_whole::delete_force(string pfid, string psetid)
 			fcount--;
 			return;
 		}
-	cout << "set" << rhs->setid << "ì— force" << pfid << "ê°€ ì—†ìŠµë‹ˆë‹¤." << endl;
+	cout << "set" << rhs->setid << "¿¡ force" << pfid << "°¡ ¾ø½À´Ï´Ù." << endl;
 }
 
 void Set_whole::Calculate(int duration, char print)
@@ -219,7 +219,7 @@ void Set_whole::Calculate(int duration, char print)
 		Gravity();
 		if (print)
 		{
-			cout << "ì‹œë®¬ë ˆì´ì…˜ t= " << time / 1000.0 << "s" << endl;
+			cout << "½Ã¹Ä·¹ÀÌ¼Ç t= " << time / 1000.0 << "s" << endl;
 			for (int s = 0; s < setcount; s++)
 				for (int p = 0; p < Set_of_set[s]->Lsize; p++)
 					Set_of_set[s]->List[p]->print_infor();
@@ -230,14 +230,14 @@ void Set_whole::Calculate(int duration, char print)
 			double fys = Set_of_set[s]->getforce_y();
 			for (int p = 0; p < Set_of_set[s]->Lsize; p++)
 			{
-				//ê³ ì • ì„¤ì • ì²´í¬
+				//°íÁ¤ ¼³Á¤ Ã¼Å©
 				if (Set_of_set[s]->List[p]->fixation == 0)
 				{
-					//x,y ì¢Œí‘œ ë³€í™”
+					//x,y ÁÂÇ¥ º¯È­
 					Set_of_set[s]->List[p]->x += Set_of_set[s]->List[p]->vx + (Set_of_set[s]->List[p]->force_p[0] + fxs) / (2 * Set_of_set[s]->List[p]->m);
 					Set_of_set[s]->List[p]->y += Set_of_set[s]->List[p]->vy + (Set_of_set[s]->List[p]->force_p[1] + fys) / (2 * Set_of_set[s]->List[p]->m);
 				}
-				//vx, vy ë³€í™”
+				//vx, vy º¯È­
 				Set_of_set[s]->List[p]->vx += (Set_of_set[s]->List[p]->force_p[0] + fxs) / Set_of_set[s]->List[p]->m;
 				Set_of_set[s]->List[p]->vy += (Set_of_set[s]->List[p]->force_p[1] + fys) / Set_of_set[s]->List[p]->m;
 			}
@@ -247,7 +247,7 @@ void Set_whole::Calculate(int duration, char print)
 	}
 	if (print)
 	{
-		cout << "ì‹œë®¬ë ˆì´ì…˜ t= " << time / 1000.0 << "s" << endl;
+		cout << "½Ã¹Ä·¹ÀÌ¼Ç t= " << time / 1000.0 << "s" << endl;
 		for (int s = 0; s < setcount; s++)
 			for (int p = 0; p < Set_of_set[s]->Lsize; p++)
 				Set_of_set[s]->List[p]->print_infor();
@@ -257,10 +257,10 @@ void Set_whole::Calculate(int duration, char print)
 
 void Set_whole::Gravity()
 {
-	//ì¤‘ë ¥ ì„¤ì •ì— ë”°ë¼ ì‹¤í–‰ ì¤‘ë‹¨.
+	//Áß·Â ¼³Á¤¿¡ µû¶ó ½ÇÇà Áß´Ü.
 	if (gravity == 0)
 		return;
-	//ê° ì…ìë“¤ì˜ force_pë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”
+	//°¢ ÀÔÀÚµéÀÇ force_p¸¦ 0À¸·Î ÃÊ±âÈ­
 	for (int s = 0; s < setcount; s++)
 		for (int p = 0; p < Set_of_set[s]->Lsize; p++)
 		{
@@ -268,9 +268,7 @@ void Set_whole::Gravity()
 			Set_of_set[s]->List[p]->force_p[1] = 0.0;
 		}
 
-
-
-	// ì…ì ìƒí˜¸ì‘ìš© ê³„ì‚° í›„ force_pì— ëŒ€ì…
+	// ÀÔÀÚ »óÈ£ÀÛ¿ë °è»ê ÈÄ force_p¿¡ ´ëÀÔ
 	for (int s = 0; s < setcount; s++)
 		for (int p = 0; p < Set_of_set[s]->Lsize; p++)
 		{
@@ -278,7 +276,7 @@ void Set_whole::Gravity()
 			for (int ss = 0; ss < setcount; ss++)
 				for (int pp = 0; pp < Set_of_set[s]->Lsize; pp++)
 				{
-					if (pp == p)
+					if (pp == p && ss == s)
 						continue;
 					double rx = Set_of_set[ss]->List[pp]->x - Set_of_set[s]->List[p]->x;
 					double ry = Set_of_set[ss]->List[pp]->y - Set_of_set[s]->List[p]->y;
