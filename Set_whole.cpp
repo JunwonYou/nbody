@@ -47,11 +47,19 @@ void Set_whole::create_particle(string id, double m, double x, double y, double 
 {
 	for (int i = 0; i < setcount; i++)
 		for (int j = 0; j < Set_of_set[i]->Lsize; j++)
+		{
 			if (id == Set_of_set[i]->List[j]->id)
 			{
-				cout << "A particle with the same name already exists" << endl;
+				cout << "A particle with the same name already exists." << endl;
 				return;
 			}
+	
+           		 if (  Set_of_set[i]->List[j]->x == x &&  Set_of_set[i]->List[j]->y == y)
+            		{
+               		 cout << "A particle already exists at that point." << endl;
+                		return;
+           		 }
+		}
 	pcount++;
 	particle* a = new particle(id, m, x, y, v_x, v_y);
 	particle_outset->add(*a);
@@ -64,7 +72,7 @@ void Set_whole::create_set(string setid)
 	for (int i = 0; i < setcount; i++)
 		if (setid == Set_of_set[i]->setid)
 		{
-			cout << "A set with the same name already exists" << endl;
+			cout << "A set with the same name already exists." << endl;
 			return;
 		}
 	setcount++;
@@ -158,7 +166,7 @@ void Set_whole::add_force(string pfid, double pfx, double pfy, string psetid)
 	Set_particle* rhs = find_set(psetid);
 	if (rhs == nullptr)
 	{
-		cout <<"There is no set "<< psetid << endl;
+		cout <<"There is no set "<< psetid << "." << endl;
 		return;
 	}
 	Set_particle::force_s* newforce = new Set_particle::force_s;
@@ -204,7 +212,7 @@ void Set_whole::delete_force(string pfid, string psetid)
 			delete rhs->fList[i];
 			delete[] rhs->fList;
 			rhs->fList = nfList;
-			cout << "Force " << pfid << " deleted from set " << psetid << endl;
+			cout << "Force " << pfid << " deleted from set " << psetid << "." << endl;
 			rhs->num_f--;
 			fcount--;
 			return;
@@ -268,17 +276,15 @@ void Set_whole::Gravity()
 			Set_of_set[s]->List[p]->force_p[1] = 0.0;
 		}
 
-
-
 	// 입자 상호작용 계산 후 force_p에 대입
 	for (int s = 0; s < setcount; s++)
 		for (int p = 0; p < Set_of_set[s]->Lsize; p++)
 		{
 			double fx = 0; double fy = 0;
 			for (int ss = 0; ss < setcount; ss++)
-				for (int pp = 0; pp < Set_of_set[s]->Lsize; pp++)
+				for (int pp = 0; pp < Set_of_set[ss]->Lsize; pp++)
 				{
-					if (pp == p)
+					if (pp == p && ss == s)
 						continue;
 					double rx = Set_of_set[ss]->List[pp]->x - Set_of_set[s]->List[p]->x;
 					double ry = Set_of_set[ss]->List[pp]->y - Set_of_set[s]->List[p]->y;

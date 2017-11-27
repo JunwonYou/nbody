@@ -12,20 +12,17 @@ public:
 	void set_mass(double mass) { m = mass; }
 	void set_location(double px, double py) { x = px; y = py; }
 	void set_velocity(double pvx, double pvy) { vx = pvx; vy = pvy; }
-	double get_mass() { return m; };
-	double get_location() { return x, y; };
-	double get_velocity() { return vx, vy; };
 	string get_id() { return id; }
 	void print_infor();
-	char fixation = 0; // 1ÀÌ¸é ½Ã¹Ä·¹ÀÌ¼Ç½Ã °íÁ¤µÇ¾î x,y ÁÂÇ¥ º¯È­ ¾øÀ½, 0ÀÌ¸é °íÁ¤ ÇØÁ¦
+	char fixation = 0; // 1ì´ë©´ ì‹œë®¬ë ˆì´ì…˜ì‹œ ê³ ì •ë˜ì–´ x,y ì¢Œí‘œ ë³€í™” ì—†ìŒ, 0ì´ë©´ ê³ ì • í•´ì œ
 private:
 	double m;
 	double x;
 	double y;
 	double vx;
 	double vy;
-	double force_p[2] = { 0.0,0.0 };  //ÀÔÀÚ³¢¸®ÀÇ »óÈ£ÀÛ¿ëÀ¸·Î ¹Ş´Â Èû
-	particle *ref = this;//ÀÚ±âÀÚ½ÅÀÇ ÁÖ¼Ò¸¦ ¸â¹öº¯¼ö·Î °¡Áö°í ÀÖ´Ù.
+	double force_p[2] = { 0.0,0.0 };  //ì…ìë¼ë¦¬ì˜ ìƒí˜¸ì‘ìš©ìœ¼ë¡œ ë°›ëŠ” í˜
+	particle *ref = this;//ìê¸°ìì‹ ì˜ ì£¼ì†Œë¥¼ ë©¤ë²„ë³€ìˆ˜ë¡œ ê°€ì§€ê³  ìˆë‹¤.
 	string id;	
 	
 };

@@ -3,15 +3,15 @@
 #include <iostream>
 #include <string>
 using namespace std;
-//particle °´Ã¼°¡ ÀÚ±âÀÇ ÁÖ¼Ò¸¦ ¸â¹ö Æ÷ÀÎÅÍ º¯¼ö·Î °®°í ÀÖ´Ù.
-//±× Æ÷ÀÎÅÍ º¯¼öµéÀ» ¹è¿­·Î ¸¸µé¾î ÀÔÀÚ °´Ã¼ ¸®½ºÆ®¸¦ °ü¸®ÇÏ´Â friend Å¬·¡½º
+//particle ê°ì²´ê°€ ìžê¸°ì˜ ì£¼ì†Œë¥¼ ë©¤ë²„ í¬ì¸í„° ë³€ìˆ˜ë¡œ ê°–ê³  ìžˆë‹¤.
+//ê·¸ í¬ì¸í„° ë³€ìˆ˜ë“¤ì„ ë°°ì—´ë¡œ ë§Œë“¤ì–´ ìž…ìž ê°ì²´ ë¦¬ìŠ¤íŠ¸ë¥¼ ê´€ë¦¬í•˜ëŠ” friend í´ëž˜ìŠ¤
 
 Set_particle::Set_particle()
 {
 }
 Set_particle::~Set_particle()
 {
-	//cout << "set" << setid << "¼Ò¸êÀÚ È£Ãâ" << endl;
+	//cout << "set" << setid << "ì†Œë©¸ìž í˜¸ì¶œ" << endl;
 	if (List)
 		delete[] List;
 	if (fList)
@@ -20,7 +20,7 @@ Set_particle::~Set_particle()
 
 void Set_particle::add(particle& rhs)
 {
-	if (List != nullptr)
+	if (List)
 	{
 		particle **newList = new particle*[Lsize + 1];
 		for (int i = 0; i < Lsize; i++)
@@ -36,14 +36,14 @@ void Set_particle::add(particle& rhs)
 	}
 	Lsize++;
 }
-//¼Â¿¡ ÀÖ´Â ÀÔÀÚµéÀ» ÇÁ¸°Æ®
+//ì…‹ì— ìžˆëŠ” ìž…ìžë“¤ì„ í”„ë¦°íŠ¸
 void Set_particle::showmembers()
 {
 	cout << "--- Set " << setid << " ---" << endl;
 	for (int i = 0; i < Lsize; i++)
 		List[i]->print_infor();
 }
-//¼Â¿¡ ÀÖ´Â ÀÔÀÚµéÀÇ ¾ÆÀÌµð¸¦ Ãâ·Â
+//ì…‹ì— ìžˆëŠ” ìž…ìžë“¤ì˜ ì•„ì´ë””ë¥¼ ì¶œë ¥
 void Set_particle::showid()
 {
 	for (int i = 0; i < Lsize; i++)
@@ -51,7 +51,7 @@ void Set_particle::showid()
 	cout << endl;
 }
 
-//ÆÄÆ¼Å¬id¸¦ ¹Þ¾Æ ¼Â¿¡¼­ Á¦¿Ü
+//íŒŒí‹°í´idë¥¼ ë°›ì•„ ì…‹ì—ì„œ ì œì™¸
 
 void Set_particle::remove(string pid)
 {
@@ -69,8 +69,8 @@ void Set_particle::remove(string pid)
 	Lsize--;
 }
 
-//ÀÔ·Â¹ÞÀº id ÀÔÀÚ¸¦ ÁÖ¼Ò·Î ¹ÝÈ¯
-//Lsize¸¸Å­¸¸ for¹®À» ¹Ýº¹ÇÏ°í ¾øÀ¸¸é nullptr¹ÝÈ¯
+//ìž…ë ¥ë°›ì€ id ìž…ìžë¥¼ ì£¼ì†Œë¡œ ë°˜í™˜
+//Lsizeë§Œí¼ë§Œ forë¬¸ì„ ë°˜ë³µí•˜ê³  ì—†ìœ¼ë©´ nullptrë°˜í™˜
 particle* Set_particle::findparticle(string pid)
 {
 	int i;
