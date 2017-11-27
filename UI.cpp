@@ -4,7 +4,7 @@
 #include "UI.hpp"
 using namespace std;
 
-double UI::trans_input(string* com_arr,int index)
+double UI::trans_input(string* com_arr, int index)
 {
 	if (com_arr[index].length() == 0)
 		throw 1;
@@ -24,7 +24,7 @@ double UI::trans_input(string* com_arr,int index)
 		else
 			throw 1;
 	}
-	int deg = trans_input_decimal(com_arr, index)-1;
+	int deg = trans_input_decimal(com_arr, index) - 1;
 	if (deg > 0)
 	{
 		while (deg > 0)
@@ -66,10 +66,10 @@ int UI::trans_input_decimal(string* com_arr, int index)
 		else if (a == 101 || a == 69)
 		{
 			cout << "지수 부분 처리" << endl;
-			for (int k = i+1; k < com_arr[index].length(); k++)
+			for (int k = i + 1; k < com_arr[index].length(); k++)
 			{
 				int b = static_cast<int>(com_arr[index][k]);
-				if (k == i + 1 )
+				if (k == i + 1)
 				{
 					if (b == 43)
 					{
@@ -111,6 +111,28 @@ int UI::trans_input_decimal(string* com_arr, int index)
 	}
 	return deg;
 }
+int UI::num_parameter(string* com_arr)
+{
+	string str = com_arr[0];
+	if (str == "@")
+		return 0;
+	else if (str == "A")
+		return 1;
+	else if (str == "B")
+		return 2;
+	else if (str == "C")
+		return 3;
+	else if (str == "D")
+		return 4;
+	else if (str == "E")
+		return 5;
+	else if (str == "F")
+		return 6;
+	else if (str == "G")
+		return 7;
+	else
+		return -1;
+}
 
 void UI::Run()
 {
@@ -123,9 +145,9 @@ start:
 			cout << endl << "Enter a command: ";
 			getline(cin, commend);
 			string* com_arr = split(commend);
-			if (com_arr[0].length() != 2)
+			if (com_arr[1].length() != 2)
 				throw 3;
-			else if (com_arr[0][0] == 'q' && com_arr[0][1] == 'q')
+			else if (com_arr[1][0] == 'q' && com_arr[1][1] == 'q')
 			{
 				delete[] com_arr;
 				delete whole;
@@ -134,13 +156,15 @@ start:
 			}
 			else
 			{
-				switch (com_arr[0][0])
+				switch (com_arr[1][0])
 				{
 				case 'p':
-					switch (com_arr[0][1])
+					switch (com_arr[1][1])
 					{
 					case  'a':
 					{
+						if (num_parameter(com_arr) != 1)
+							throw 6;
 						if (whole->pcount == 0)
 						{
 							cout << "No particle" << endl;
@@ -153,21 +177,25 @@ start:
 					}
 					case  'p':
 					{
-						string id = com_arr[1];
-						for (int s = 0; s <= whole->setcount; s++)
+						if(num_parameter(com_arr) != 2)
+							throw 6;
+						string id = com_arr[2];
+						for (int s = 0; s < whole->setcount; s++)
 							for (int p = 0; p < whole->Set_of_set[s]->Lsize; p++)
 								if (whole->Set_of_set[s]->List[p]->get_id() == id)
 								{
 									whole->Set_of_set[s]->List[p]->print_infor();
 									goto start;
 								}
-						cout << "There is no particle<" << id << ">" << endl;
+						cout << "There is no particle " << id << endl;
 						break;
-
+						
 					}
 					case  's':
 					{
-						string setid = com_arr[1];
+						if (num_parameter(com_arr) != 2)
+							throw 6;
+						string setid = com_arr[2];
 						if (whole->find_set(setid))
 							whole->find_set(setid)->showmembers();
 						else
@@ -176,24 +204,32 @@ start:
 					}
 					case  'f':
 					{
-						string setid = com_arr[1];
+						if (num_parameter(com_arr) != 2)
+							throw 6;
+						string setid = com_arr[2];
 						if (whole->find_set(setid))
 							whole->find_set(setid)->showforce();
 						break;
 					}
 					case  't':
 					{
+						if (num_parameter(com_arr) != 1)
+							throw 6;
 						cout << "print current time" << endl;
 						cout << whole->time / 1000.0 << "s" << endl;
 						break;
 					}
 					case  'm':
 					{
+						if (num_parameter(com_arr) != 1)
+							throw 6;
 						whole->print_memory();
 						break;
 					}
 					case  'g':
 					{
+						if (num_parameter(com_arr) != 1)
+							throw 6;
 						if (whole->gravity == 1)
 							cout << "Gravity is active now" << endl;
 						else
@@ -204,43 +240,47 @@ start:
 					}
 					break;
 				case 'a':
-					switch (com_arr[0][1])
+					switch (com_arr[1][1])
 					{
 					case 'p':
 					{
-						string id = com_arr[1];
+						if (num_parameter(com_arr) != 7)
+							throw 6;
+						string id = com_arr[2];
 						double result[5];
 						for (int i = 0; i < 5; i++)
-						{
-							result[i] = trans_input(com_arr, i + 2);
-						}
-						
+							result[i] = trans_input(com_arr, i + 3);
 						whole->create_particle(id, result[0], result[1], result[2], result[3], result[4]);
 						break;
 					}
 					case 's':
 					{
-						if (com_arr[1].length() == 0)
-
+						if (num_parameter(com_arr) != 2)
+							throw 6;
+						if (com_arr[2].length() == 0)
 							throw 5;
-						string setid = com_arr[1];
+						string setid = com_arr[2];
 						whole->create_set(setid);
 						break;
 					}
 					case 'e':
 					{
-						string setid = com_arr[1];
-						string id = com_arr[2];
+						if (num_parameter(com_arr) != 3)
+							throw 6;
+						string setid = com_arr[2];
+						string id = com_arr[3];
 						whole->add_particle(setid, id);
 						break;
 					}
 					case 'f':
 					{
-						string pfid = com_arr[1];
-						string setid = com_arr[2];
+						if (num_parameter(com_arr) != 5)
+							throw 6;
+						string pfid = com_arr[2];
+						string setid = com_arr[3];
 						double result[2];
 						for (int i = 0; i < 2; i++)
-							result[i] = trans_input(com_arr, i + 3);
+							result[i] = trans_input(com_arr, i + 4);
 						whole->add_force(pfid, result[0], result[1], setid);
 						break;
 					}
@@ -248,13 +288,15 @@ start:
 
 					break;
 				case 'd':
-					switch (com_arr[0][1])
+					switch (com_arr[1][1])
 					{
 					case 'p':
 					{
-						string id = com_arr[1];
+						if (num_parameter(com_arr) != 2)
+							throw 6;
+						string id = com_arr[2];
 						int s, p;
-						for (s = 0; s <= whole->setcount; s++)
+						for (s = 0; s < whole->setcount; s++)
 							for (p = 0; p < whole->Set_of_set[s]->Lsize; p++)
 								if (whole->Set_of_set[s]->List[p]->get_id() == id)
 								{
@@ -265,15 +307,19 @@ start:
 					}
 					case 'e':
 					{
-						string setid = com_arr[1];
-						string id = com_arr[2];
+						if (num_parameter(com_arr) != 3)
+							throw 6;
+						string setid = com_arr[2];
+						string id = com_arr[3];
 						whole->remove_particle(setid, id);
 						break;
 					}
 					case 'f':
 					{
-						string pfid = com_arr[1];
-						for (int s = 0; s <= whole->setcount; s++)
+						if (num_parameter(com_arr) != 2)
+							throw 6;
+						string pfid = com_arr[2];
+						for (int s = 0; s < whole->setcount; s++)
 						{
 							int numf = whole->Set_of_set[s]->num_f;
 							for (int f = 0; f < numf; f++)
@@ -290,6 +336,8 @@ start:
 					}
 					case 'a':
 					{
+						if (num_parameter(com_arr) != 1)
+							throw 6;
 						//모든 정보 삭제 -> whole 객체를 지우고 새로 만듦. 시간만 유지
 						int temp = whole->time;
 						delete whole;
@@ -301,21 +349,25 @@ start:
 					break;
 
 				case 'c':
-					switch (com_arr[0][1])
+					switch (com_arr[1][1])
 					{
 					case 't':
 					{
-						int deg = trans_input_decimal(com_arr, 1);
+						if (num_parameter(com_arr) != 2)
+							throw 6;
+						int deg = trans_input_decimal(com_arr, 2);
 						if (deg < -3)
 							throw 4;
-						double input = trans_input(com_arr, 1);
-						cout << "time tick is changed to " << input<<"s" << endl;
-						whole->t_tick = static_cast<int>(input*1000);
+						double input = trans_input(com_arr, 2);
+						cout << "time tick is changed to " << input << "s" << endl;
+						whole->t_tick = static_cast<int>(input * 1000);
 						break;
 					}
 					case 'g':
 					{
-						string input = com_arr[1];
+						if (num_parameter(com_arr) != 2)
+							throw 6;
+						string input = com_arr[2];
 						if (input == "true")
 						{
 							whole->gravity = 1;
@@ -332,10 +384,12 @@ start:
 					}
 					case 'p':
 					{
-						string pid = com_arr[1];
-						string boo = com_arr[2];
+						if (num_parameter(com_arr) != 3)
+							throw 6;
+						string pid = com_arr[2];
+						string boo = com_arr[3];
 						int s, p;
-						for (s = 0; s <= whole->setcount; s++)
+						for (s = 0; s < whole->setcount; s++)
 							for (p = 0; p < whole->Set_of_set[s]->Lsize; p++)
 								if (whole->Set_of_set[s]->List[p]->get_id() == pid)
 								{
@@ -361,19 +415,21 @@ start:
 					}
 					break;
 				case 'r':
-					int dur = static_cast<int>(trans_input(com_arr, 1)*1000 / whole->t_tick);
-					cout << dur*whole->t_tick/1000.0 << "초 동안을 계산합니다." << endl;
-					
-					switch (com_arr[0][1])
+					if (num_parameter(com_arr) != 2)
+						throw 6;
+					int dur = static_cast<int>(trans_input(com_arr, 2) * 1000 / whole->t_tick);
+					cout << dur*whole->t_tick / 1000.0 << "초 동안을 계산합니다." << endl;
+
+					switch (com_arr[1][1])
 					{
 					case  'u':
 					{
-						whole->Calculate(dur,0);
+						whole->Calculate(dur, 0);
 						break;
 					}
 					case  'v':
 					{
-						whole->Calculate(dur,1);
+						whole->Calculate(dur, 1);
 						break;
 					}
 					default:
@@ -413,6 +469,11 @@ start:
 			cout << "id를 입력해야 합니다." << endl;
 			goto start;
 		}
+		case 6:
+		{
+			cout << "커맨드가 필요로 하는 인수와 개수가 맞지 않습니다." << endl;
+			goto start;
+		}
 		}
 	}
 	catch (string str)
@@ -423,7 +484,7 @@ start:
 		{
 			cout << "알 수 없는 오류입니다. 입력을 확인하세요." << endl;
 			cout << "잘못된 입력: " << str << endl;
-			
+
 		}
 		goto start;
 	}
@@ -435,18 +496,15 @@ string* UI::split(string com)
 
 	com = trim(com);
 
-	string* result = new string[7];
+	string* result = new string[8];
 	char buffer[64];
 	int i;
 	int j = 0;
-	int index = 0;
+	int index = 1;
 	for (i = 0; i < com.length(); i++)
 	{
-		if (index == 7)
-		{
-			cout << "입력 인수 초과. 6번째 인수까지만 받습니다." << endl;
+		if (index == 8)
 			break;
-		}
 		else if (i == com.length() - 1)
 		{
 			buffer[j] = com[i];
@@ -468,10 +526,10 @@ string* UI::split(string com)
 			buffer[0] = 0;
 			j = 0;
 			index++;
-			
+
 		}
 	}
-
+	result[0] = index + 64;
 	return result;
 }
 
