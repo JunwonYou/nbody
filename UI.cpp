@@ -65,7 +65,7 @@ int UI::trans_input_decimal(string* com_arr, int index)
 				throw 2;
 		else if (a == 101 || a == 69)
 		{
-			cout << "ì§€ìˆ˜ ë¶€ë¶„ ì²˜ë¦¬" << endl;
+			cout << "Áö¼ö ºÎºÐ Ã³¸®" << endl;
 			for (int k = i + 1; k < com_arr[index].length(); k++)
 			{
 				int b = static_cast<int>(com_arr[index][k]);
@@ -102,7 +102,7 @@ int UI::trans_input_decimal(string* com_arr, int index)
 			exponent /= 10;
 			if (sign == 2)
 				exponent *= -1;
-			cout << "ì§€ìˆ˜: " << exponent << endl;
+			cout << "Áö¼ö: " << exponent << endl;
 			deg += exponent;
 			return deg;
 		}
@@ -151,7 +151,7 @@ start:
 			{
 				delete[] com_arr;
 				delete whole;
-				cout << "End program." << endl;
+				cout << "Done" << endl;
 				return;
 			}
 			else
@@ -180,14 +180,14 @@ start:
 						if(num_parameter(com_arr) != 2)
 							throw 6;
 						string id = com_arr[2];
-						for (int s = 0; s <= whole->setcount; s++)
+						for (int s = 0; s < whole->setcount; s++)
 							for (int p = 0; p < whole->Set_of_set[s]->Lsize; p++)
 								if (whole->Set_of_set[s]->List[p]->get_id() == id)
 								{
 									whole->Set_of_set[s]->List[p]->print_infor();
 									goto start;
 								}
-						cout << "There is no particle<" << id << ">" << endl;
+						cout << "There is no particle " << id << endl;
 						break;
 						
 					}
@@ -296,7 +296,7 @@ start:
 							throw 6;
 						string id = com_arr[2];
 						int s, p;
-						for (s = 0; s <= whole->setcount; s++)
+						for (s = 0; s < whole->setcount; s++)
 							for (p = 0; p < whole->Set_of_set[s]->Lsize; p++)
 								if (whole->Set_of_set[s]->List[p]->get_id() == id)
 								{
@@ -319,7 +319,7 @@ start:
 						if (num_parameter(com_arr) != 2)
 							throw 6;
 						string pfid = com_arr[2];
-						for (int s = 0; s <= whole->setcount; s++)
+						for (int s = 0; s < whole->setcount; s++)
 						{
 							int numf = whole->Set_of_set[s]->num_f;
 							for (int f = 0; f < numf; f++)
@@ -338,7 +338,7 @@ start:
 					{
 						if (num_parameter(com_arr) != 1)
 							throw 6;
-						//ëª¨ë“  ì •ë³´ ì‚­ì œ -> whole ê°ì²´ë¥¼ ì§€ìš°ê³  ìƒˆë¡œ ë§Œë“¦. ì‹œê°„ë§Œ ìœ ì§€
+						//¸ðµç Á¤º¸ »èÁ¦ -> whole °´Ã¼¸¦ Áö¿ì°í »õ·Î ¸¸µê. ½Ã°£¸¸ À¯Áö
 						int temp = whole->time;
 						delete whole;
 						whole = new Set_whole;
@@ -389,7 +389,7 @@ start:
 						string pid = com_arr[2];
 						string boo = com_arr[3];
 						int s, p;
-						for (s = 0; s <= whole->setcount; s++)
+						for (s = 0; s < whole->setcount; s++)
 							for (p = 0; p < whole->Set_of_set[s]->Lsize; p++)
 								if (whole->Set_of_set[s]->List[p]->get_id() == pid)
 								{
@@ -411,14 +411,14 @@ start:
 						break;
 					}
 					case 'l':
-						cout << "ëª…ë ¹ì–´ ëª©ë¡ ì¶œë ¥" << endl;
+						cout << "¸í·É¾î ¸ñ·Ï Ãâ·Â" << endl;
 					}
 					break;
 				case 'r':
 					if (num_parameter(com_arr) != 2)
 						throw 6;
 					int dur = static_cast<int>(trans_input(com_arr, 2) * 1000 / whole->t_tick);
-					cout << dur*whole->t_tick / 1000.0 << "ì´ˆ ë™ì•ˆì„ ê³„ì‚°í•©ë‹ˆë‹¤." << endl;
+					cout << dur*whole->t_tick / 1000.0 << "ÃÊ µ¿¾ÈÀ» °è»êÇÕ´Ï´Ù." << endl;
 
 					switch (com_arr[1][1])
 					{
@@ -446,32 +446,32 @@ start:
 		{
 		case 1:
 		{
-			cout << "ìž…ë ¥ ì¸ìˆ˜ê°€ ë¶€ì¡±í•˜ê±°ë‚˜ ì •ìƒì ì´ì§€ ì•ŠìŠµë‹ˆë‹¤. ë‹¤ì‹œ ìž…ë ¥í•´ì£¼ì„¸ìš”." << endl;
+			cout << "ÀÔ·Â ÀÎ¼ö°¡ ºÎÁ·ÇÏ°Å³ª Á¤»óÀûÀÌÁö ¾Ê½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
 			goto start;
 		}
 		case 2:
 		{
-			cout << "ì˜¬ë°”ë¥¸ ì†Œìˆ˜ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”." << endl;
+			cout << "¿Ã¹Ù¸¥ ¼Ò¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
 			goto start;
 		}
 		case 3:
 		{
-			cout << "ì»¤ë§¨ë“œëŠ” ë‘ê¸€ìžë¡œë§Œ ìž…ë ¥í•´ì£¼ì„¸ìš”. cl ì„ ìž…ë ¥í•˜ë©´ ì»¤ë§¨ë“œ ëª©ë¡ì„ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤." << endl;
+			cout << "Ä¿¸Çµå´Â µÎ±ÛÀÚ·Î¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä. cl À» ÀÔ·ÂÇÏ¸é Ä¿¸Çµå ¸ñ·ÏÀ» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù." << endl;
 			goto start;
 		}
 		case 4:
 		{
-			cout << "time tickì€ 0.001 ì´ìƒìœ¼ë¡œë§Œ ì„¤ì •í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
+			cout << "time tickÀº 0.001 ÀÌ»óÀ¸·Î¸¸ ¼³Á¤ÇÒ ¼ö ¾ø½À´Ï´Ù." << endl;
 			goto start;
 		}
 		case 5:
 		{
-			cout << "idë¥¼ ìž…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤." << endl;
+			cout << "id¸¦ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù." << endl;
 			goto start;
 		}
 		case 6:
 		{
-			cout << "ì»¤ë§¨ë“œê°€ í•„ìš”ë¡œ í•˜ëŠ” ì¸ìˆ˜ì™€ ê°œìˆ˜ê°€ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤." << endl;
+			cout << "Ä¿¸Çµå°¡ ÇÊ¿ä·Î ÇÏ´Â ÀÎ¼ö¿Í °³¼ö°¡ ¸ÂÁö ¾Ê½À´Ï´Ù." << endl;
 			goto start;
 		}
 		}
@@ -479,11 +479,11 @@ start:
 	catch (string str)
 	{
 		if (str == "bool")
-			cout << "true í˜¹ì€ falseë¡œ ì„¤ì •ì„ ìž…ë ¥í•˜ì„¸ìš”" << endl;
+			cout << "true È¤Àº false·Î ¼³Á¤À» ÀÔ·ÂÇÏ¼¼¿ä" << endl;
 		else
 		{
-			cout << "ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜ìž…ë‹ˆë‹¤. ìž…ë ¥ì„ í™•ì¸í•˜ì„¸ìš”." << endl;
-			cout << "ìž˜ëª»ëœ ìž…ë ¥: " << str << endl;
+			cout << "¾Ë ¼ö ¾ø´Â ¿À·ùÀÔ´Ï´Ù. ÀÔ·ÂÀ» È®ÀÎÇÏ¼¼¿ä." << endl;
+			cout << "Àß¸øµÈ ÀÔ·Â: " << str << endl;
 
 		}
 		goto start;
