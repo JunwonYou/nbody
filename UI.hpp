@@ -1,5 +1,16 @@
 #include <string>
+#include "Set_whole.hpp"
 using namespace std;
-void UI(string); // UI call, í´ë˜ìŠ¤ êµ¬í˜„ ì˜ˆì •.
-string* split(string com); // ì…ë ¥ë°›ì€ ìŠ¤íŠ¸ë§ì„ ë¶„í• í•´ì„œ ë°˜í™˜
-string trim(string& ); // ì…ë ¥ë°›ì€ ìŠ¤íŠ¸ë§ì˜ ì•ë’¤ ë¹ˆì¹¸ì„ ì‚­ì œ
+class UI
+{
+private:
+
+public:
+	string* split(string com); // ÀÔ·Â¹ŞÀº ½ºÆ®¸µÀ» ºĞÇÒÇØ¼­ ¹İÈ¯
+	string trim(string&); // ÀÔ·Â¹ŞÀº ½ºÆ®¸µÀÇ ¾ÕµÚ ºóÄ­À» »èÁ¦#pragma once
+	Set_whole* whole;
+	double trans_input(string*,int);
+	int trans_input_decimal(string*, int);
+
+	void Run();
+};
