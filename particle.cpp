@@ -3,18 +3,19 @@
 #include "particle.hpp"
 #include <iostream>
 using namespace std;
-//»ı¼ºÀÚ¿Í ¼Ò¸êÀÚ
+//ìƒì„±ìì™€ ì†Œë©¸ì
 
 
-//¸Ş¼Òµå
+//ë©”ì†Œë“œ
 void particle::print_infor()
 {
 	cout << "particle: " << id << endl;
+	cout << "	Mass: " << m << "kg" << endl;
 	cout << "	Location:(" << x << ", " << y <<")"<< endl;
 	cout << "	Velocity:(" << vx << ", " << vy <<")"<< endl;
 }
 
 particle::~particle()
 {
-	//cout << "particle " << id << "¼Ò¸êÀÚ" << endl;
+	//cout << "particle " << id << "ì†Œë©¸ì" << endl;
 }
