@@ -282,7 +282,7 @@ void Set_whole::Gravity()
 		{
 			double fx = 0; double fy = 0;
 			for (int ss = 0; ss < setcount; ss++)
-				for (int pp = 0; pp < Set_of_set[s]->Lsize; pp++)
+				for (int pp = 0; pp < Set_of_set[ss]->Lsize; pp++)
 				{
 					if (pp == p && ss == s)
 						continue;
