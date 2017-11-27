@@ -9,10 +9,13 @@ double UI::trans_input(string* com_arr, int index)
 	if (com_arr[index].length() == 0)
 		throw 1;
 	double num = 0;
+	char sign = 1;
 	for (int i = 0; i < com_arr[index].length(); i++)
 	{
 		int a = static_cast<int>(com_arr[index][i]);
-		if (47 < a && a < 58)
+		if (i==0 && a == 45)
+			sign = -1;
+		else if (47 < a && a < 58)
 		{
 			num += a - 48;
 			num *= 10;
@@ -41,7 +44,7 @@ double UI::trans_input(string* com_arr, int index)
 			deg++;
 		}
 	}
-	return num;
+	return sign*num;
 
 }
 int UI::trans_input_decimal(string* com_arr, int index)
@@ -58,6 +61,8 @@ int UI::trans_input_decimal(string* com_arr, int index)
 			if (decimal)
 				deg--;
 		}
+		else if (a == 45)
+			continue;
 		else if (a == 46)
 			if (decimal == 0)
 				decimal = 1;
@@ -95,7 +100,7 @@ int UI::trans_input_decimal(string* com_arr, int index)
 					exponent *= 10;
 					cout << exponent << endl;
 				}
-
+				
 				else
 					throw 2;
 			}
@@ -250,6 +255,8 @@ start:
 						double result[5];
 						for (int i = 0; i < 5; i++)
 							result[i] = trans_input(com_arr, i + 3);
+						if (result[0] <= 0)
+							throw 7;
 						whole->create_particle(id, result[0], result[1], result[2], result[3], result[4]);
 						break;
 					}
@@ -359,6 +366,8 @@ start:
 						if (deg < -3)
 							throw 4;
 						double input = trans_input(com_arr, 2);
+						if (input <= 0)
+							throw 7;
 						cout << "time tick is changed to " << input << "s" << endl;
 						whole->t_tick = static_cast<int>(input * 1000);
 						break;
@@ -446,7 +455,7 @@ start:
 		{
 		case 1:
 		{
-			cout << "입력 인수가 부족하거나 정상적이지 않습니다. 다시 입력해주세요." << endl;
+			cout << "입력 인수가 없거나 정상적이지 않습니다. 다시 입력해주세요." << endl;
 			goto start;
 		}
 		case 2:
@@ -473,6 +482,10 @@ start:
 		{
 			cout << "커맨드가 필요로 하는 인수와 개수가 맞지 않습니다." << endl;
 			goto start;
+		}
+		case 7:
+		{
+			cout << "양수로만 받을 수 있는 인수입니다." << endl;
 		}
 		}
 	}

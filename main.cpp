@@ -3,7 +3,6 @@
 
 int main()
 {
-	UI ui;
-	ui.Run();
+	UI ui; ui.Run();
 	return 0;
 }
