@@ -6,34 +6,35 @@ class Set_whole
 {
 	friend class UI;
 private:
-	int setcount = 1; // set ¼ö (outsetµµ Æ÷ÇÔÇÑ´Ù. memory Ãâ·Â ½Ã¿¡¸¸ outsetÁ¦¿Ü)
-	int pcount = 0; //particle ¼ö
-	int fcount = 0; // forceÀÇ ¼ö
-	Set_particle** Set_of_set; //setµéÀÇ set
-	Set_particle* particle_outset = nullptr; //ÀÔÀÚ »ı¼º ½Ã µé¾î°¥ ±âº» set
-	int time = 0;
+	int setcount = 1; // set ìˆ˜ (outsetë„ í¬í•¨í•œë‹¤. memory ì¶œë ¥ ì‹œì—ë§Œ outsetì œì™¸)
+	int pcount = 0; //particle ìˆ˜
+	int fcount = 0; // forceì˜ ìˆ˜
+	Set_particle** Set_of_set; //setë“¤ì˜ set
+	Set_particle* particle_outset = nullptr; //ì…ì ìƒì„± ì‹œ ë“¤ì–´ê°ˆ ê¸°ë³¸ set
+	double time = 0;
+	int t_tick = 100; // ê³„ì‚° ì£¼ê¸°, ìµœì†Œ ë‹¨ìœ„ëŠ” ms ì´ë‹¤. ê¸°ë³¸ê°’ì€ 0.1ì´ˆ
+	
 public:
 	Set_whole();
 	~Set_whole();
 	void create_particle(string, double, double, double, double, double);
 	void create_set(string);
 	Set_particle* find_set(string);
-	// ÀÔÀÚ¸¦ ±âº» setÀ¸·Î Á¦¿Ü
+	// ì…ìë¥¼ ê¸°ë³¸ setìœ¼ë¡œ ì œì™¸
 	void remove_particle(string, string);
-	// ÀÔÀÚ¸¦ »èÁ¦
+	// ì…ìë¥¼ ì‚­ì œ
 	void delete_particle(string, string);
 	void print_memory();
-	//±âº»set¿¡ ÀÖ´Â ÀÔÀÚ¸¦ ¿øÇÏ´Â setÀ¸·Î ÀÌµ¿
+	//ê¸°ë³¸setì— ìˆëŠ” ì…ìë¥¼ ì›í•˜ëŠ” setìœ¼ë¡œ ì´ë™
 	void add_particle(string, string);
-	//ÁÖ¾îÁø ÀÎµ¦½ºÀÇ ÀÔÀÚ°¡ ÀÖ´ÂÁö È®ÀÎ
+	//ì£¼ì–´ì§„ ì¸ë±ìŠ¤ì˜ ì…ìê°€ ìˆëŠ”ì§€ í™•ì¸
 	int check(string, string);
-	int t_tick = 100; // °è»ê ÁÖ±â, ÃÖ¼Ò ´ÜÀ§´Â ms ÀÌ´Ù. ±âº»°ªÀº 0.1ÃÊ
-	//set¿¡ force »ı¼º/ »èÁ¦
+	//setì— force ìƒì„±/ ì‚­ì œ
 	void add_force(string, double, double, string);
 	void delete_force(string, string);
-	//½Ã¹Ä·¹ÀÌ¼Ç ¿¬»ê
+	//ì‹œë®¬ë ˆì´ì…˜ ì—°ì‚°
 	void Calculate(int,char);
-	//ÀÔÀÚ °£ Áß·Â »óÈ£ÀÛ¿ë °è»ê
+	//ì…ì ê°„ ì¤‘ë ¥ ìƒí˜¸ì‘ìš© ê³„ì‚°
 	void Gravity();
-	char gravity = 1; //Áß·Â on/off ¼³Á¤°ª, 1ÀÌ onÀÌ´Ù.
+	char gravity = 1; //ì¤‘ë ¥ on/off ì„¤ì •ê°’, 1ì´ onì´ë‹¤.
 };
