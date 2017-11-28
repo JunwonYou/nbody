@@ -221,7 +221,7 @@ start:
 						if (num_parameter(com_arr) != 1)
 							throw 6;
 						cout << "print current time" << endl;
-						cout << whole->time / 1000.0 << "s" << endl;
+						cout << whole->time << "s" << endl;
 						break;
 					}
 					case  'm':
@@ -433,12 +433,12 @@ start:
 					{
 					case  'u':
 					{
-						whole->Calculate(dur, 0);
+						whole->Calculate(numof_tick, 0);
 						break;
 					}
 					case  'v':
 					{
-						whole->Calculate(dur, 1);
+						whole->Calculate(numof_tick, 1);
 						break;
 					}
 					default:
