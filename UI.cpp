@@ -221,7 +221,7 @@ start:
 						if (num_parameter(com_arr) != 1)
 							throw 6;
 						cout << "print current time" << endl;
-						cout << whole->time / 1000.0 << "s" << endl;
+						cout << whole->time << "s" << endl;
 						break;
 					}
 					case  'm':
@@ -426,19 +426,19 @@ start:
 				case 'r':
 					if (num_parameter(com_arr) != 2)
 						throw 6;
-					int dur = static_cast<int>(trans_input(com_arr, 2) * 1000 / whole->t_tick);
-					cout << com_arr[2] << "초 동안을 계산합니다." << endl;
-
+                        			int time_in_second = static_cast<int>(trans_input(com_arr, 2));
+                        			int numof_tick = (time_in_second * 1000 / whole->t_tick);
+                        			cout << time_in_second << "초 동안을 계산합니다." << endl;
 					switch (com_arr[1][1])
 					{
 					case  'u':
 					{
-						whole->Calculate(dur, 0);
+						whole->Calculate(numof_tick, 0);
 						break;
 					}
 					case  'v':
 					{
-						whole->Calculate(dur, 1);
+						whole->Calculate(numof_tick, 1);
 						break;
 					}
 					default:
