@@ -70,7 +70,7 @@ int UI::trans_input_decimal(string* com_arr, int index)
 				throw 2;
 		else if (a == 101 || a == 69)
 		{
-			cout << "Áö¼ö ºÎºÐ Ã³¸®" << endl;
+			cout << "ì§€ìˆ˜ ë¶€ë¶„ ì²˜ë¦¬" << endl;
 			for (int k = i + 1; k < com_arr[index].length(); k++)
 			{
 				int b = static_cast<int>(com_arr[index][k]);
@@ -107,7 +107,7 @@ int UI::trans_input_decimal(string* com_arr, int index)
 			exponent /= 10;
 			if (sign == 2)
 				exponent *= -1;
-			cout << "Áö¼ö: " << exponent << endl;
+			cout << "ì§€ìˆ˜: " << exponent << endl;
 			deg += exponent;
 			return deg;
 		}
@@ -345,7 +345,7 @@ start:
 					{
 						if (num_parameter(com_arr) != 1)
 							throw 6;
-						//¸ðµç Á¤º¸ »èÁ¦ -> whole °´Ã¼¸¦ Áö¿ì°í »õ·Î ¸¸µê. ½Ã°£¸¸ À¯Áö
+						//ëª¨ë“  ì •ë³´ ì‚­ì œ -> whole ê°ì²´ë¥¼ ì§€ìš°ê³  ìƒˆë¡œ ë§Œë“¦. ì‹œê°„ë§Œ ìœ ì§€
 						int temp = whole->time;
 						delete whole;
 						whole = new Set_whole;
@@ -420,14 +420,14 @@ start:
 						break;
 					}
 					case 'l':
-						cout << "¸í·É¾î ¸ñ·Ï Ãâ·Â" << endl;
+						cout << "ëª…ë ¹ì–´ ëª©ë¡ ì¶œë ¥" << endl;
 					}
 					break;
 				case 'r':
 					if (num_parameter(com_arr) != 2)
 						throw 6;
 					int dur = static_cast<int>(trans_input(com_arr, 2) * 1000 / whole->t_tick);
-					cout << dur*whole->t_tick / 1000.0 << "ÃÊ µ¿¾ÈÀ» °è»êÇÕ´Ï´Ù." << endl;
+					cout << com_arr[2] << "ì´ˆ ë™ì•ˆì„ ê³„ì‚°í•©ë‹ˆë‹¤." << endl;
 
 					switch (com_arr[1][1])
 					{
@@ -455,48 +455,48 @@ start:
 		{
 		case 1:
 		{
-			cout << "ÀÔ·Â ÀÎ¼ö°¡ ¾ø°Å³ª Á¤»óÀûÀÌÁö ¾Ê½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
+			cout << "ìž…ë ¥ ì¸ìˆ˜ê°€ ì—†ê±°ë‚˜ ì •ìƒì ì´ì§€ ì•ŠìŠµë‹ˆë‹¤. ë‹¤ì‹œ ìž…ë ¥í•´ì£¼ì„¸ìš”." << endl;
 			goto start;
 		}
 		case 2:
 		{
-			cout << "¿Ã¹Ù¸¥ ¼Ò¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
+			cout << "ì˜¬ë°”ë¥¸ ì†Œìˆ˜ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”." << endl;
 			goto start;
 		}
 		case 3:
 		{
-			cout << "Ä¿¸Çµå´Â µÎ±ÛÀÚ·Î¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä. cl À» ÀÔ·ÂÇÏ¸é Ä¿¸Çµå ¸ñ·ÏÀ» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù." << endl;
+			cout << "ì»¤ë§¨ë“œëŠ” ë‘ê¸€ìžë¡œë§Œ ìž…ë ¥í•´ì£¼ì„¸ìš”. cl ì„ ìž…ë ¥í•˜ë©´ ì»¤ë§¨ë“œ ëª©ë¡ì„ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤." << endl;
 			goto start;
 		}
 		case 4:
 		{
-			cout << "time tickÀº 0.001 ÀÌ»óÀ¸·Î¸¸ ¼³Á¤ÇÒ ¼ö ¾ø½À´Ï´Ù." << endl;
+			cout << "time tickì€ 0.001 ì´ìƒìœ¼ë¡œë§Œ ì„¤ì •í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
 			goto start;
 		}
 		case 5:
 		{
-			cout << "id¸¦ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù." << endl;
+			cout << "idë¥¼ ìž…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤." << endl;
 			goto start;
 		}
 		case 6:
 		{
-			cout << "Ä¿¸Çµå°¡ ÇÊ¿ä·Î ÇÏ´Â ÀÎ¼ö¿Í °³¼ö°¡ ¸ÂÁö ¾Ê½À´Ï´Ù." << endl;
+			cout << "ì»¤ë§¨ë“œê°€ í•„ìš”ë¡œ í•˜ëŠ” ì¸ìˆ˜ì™€ ê°œìˆ˜ê°€ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤." << endl;
 			goto start;
 		}
 		case 7:
 		{
-			cout << "¾ç¼ö·Î¸¸ ¹ÞÀ» ¼ö ÀÖ´Â ÀÎ¼öÀÔ´Ï´Ù." << endl;
+			cout << "ì–‘ìˆ˜ë¡œë§Œ ë°›ì„ ìˆ˜ ìžˆëŠ” ì¸ìˆ˜ìž…ë‹ˆë‹¤." << endl;
 		}
 		}
 	}
 	catch (string str)
 	{
 		if (str == "bool")
-			cout << "true È¤Àº false·Î ¼³Á¤À» ÀÔ·ÂÇÏ¼¼¿ä" << endl;
+			cout << "true í˜¹ì€ falseë¡œ ì„¤ì •ì„ ìž…ë ¥í•˜ì„¸ìš”" << endl;
 		else
 		{
-			cout << "¾Ë ¼ö ¾ø´Â ¿À·ùÀÔ´Ï´Ù. ÀÔ·ÂÀ» È®ÀÎÇÏ¼¼¿ä." << endl;
-			cout << "Àß¸øµÈ ÀÔ·Â: " << str << endl;
+			cout << "ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜ìž…ë‹ˆë‹¤. ìž…ë ¥ì„ í™•ì¸í•˜ì„¸ìš”." << endl;
+			cout << "ìž˜ëª»ëœ ìž…ë ¥: " << str << endl;
 
 		}
 		goto start;
