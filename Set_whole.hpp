@@ -11,7 +11,7 @@ private:
 	int fcount = 0; // force의 수
 	Set_particle** Set_of_set; //set들의 set
 	Set_particle* particle_outset = nullptr; //입자 생성 시 들어갈 기본 set
-	double time = 0;
+	double time = 0; //단위 second
 	int t_tick = 100; // 계산 주기, 최소 단위는 1ms 이다. 기본값은 0.1초
 	
 public:
