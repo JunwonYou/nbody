@@ -250,7 +250,7 @@ void Set_whole::Calculate(int numof_tick, char print)
 			}
 			
 		}
-		time += t_tick/1000;
+		time += (double)t_tick * 0.001;
 	}
 	if (print)
 	{
