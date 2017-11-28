@@ -426,9 +426,9 @@ start:
 				case 'r':
 					if (num_parameter(com_arr) != 2)
 						throw 6;
-					int dur = static_cast<int>(trans_input(com_arr, 2) * 1000 / whole->t_tick);
-					cout << com_arr[2] << "초 동안을 계산합니다." << endl;
-
+                        			int time_in_second = static_cast<int>(trans_input(com_arr, 2));
+                        			int numof_tick = (time_in_second * 1000 / whole->t_tick);
+                        			cout << time_in_second << "초 동안을 계산합니다." << endl;
 					switch (com_arr[1][1])
 					{
 					case  'u':
