@@ -70,7 +70,6 @@ int UI::trans_input_decimal(string* com_arr, int index)
 				throw 2;
 		else if (a == 101 || a == 69)
 		{
-			cout << "ì§€ìˆ˜ ë¶€ë¶„ ì²˜ë¦¬" << endl;
 			for (int k = i + 1; k < com_arr[index].length(); k++)
 			{
 				int b = static_cast<int>(com_arr[index][k]);
@@ -90,7 +89,6 @@ int UI::trans_input_decimal(string* com_arr, int index)
 					{
 						exponent += b - 48;
 						exponent *= 10;
-						cout << exponent << endl;
 					}
 
 				}
@@ -98,7 +96,7 @@ int UI::trans_input_decimal(string* com_arr, int index)
 				{
 					exponent += b - 48;
 					exponent *= 10;
-					cout << exponent << endl;
+
 				}
 				
 				else
@@ -107,7 +105,7 @@ int UI::trans_input_decimal(string* com_arr, int index)
 			exponent /= 10;
 			if (sign == 2)
 				exponent *= -1;
-			cout << "ì§€ìˆ˜: " << exponent << endl;
+			cout << "Áö¼ö: " << exponent << endl;
 			deg += exponent;
 			return deg;
 		}
@@ -142,14 +140,17 @@ int UI::num_parameter(string* com_arr)
 void UI::Run()
 {
 	whole = new Set_whole;
+	string* com_arr = nullptr;
 start:
 	try {
 		while (1)
 		{
+			if (com_arr)
+				delete[] com_arr;
 			string commend;
 			cout << endl << "Enter a command: ";
 			getline(cin, commend);
-			string* com_arr = split(commend);
+			com_arr = split(commend);
 			if (com_arr[1].length() != 2)
 				throw 3;
 			else if (com_arr[1][0] == 'q' && com_arr[1][1] == 'q')
@@ -182,7 +183,7 @@ start:
 					}
 					case  'p':
 					{
-						if(num_parameter(com_arr) != 2)
+						if (num_parameter(com_arr) != 2)
 							throw 6;
 						string id = com_arr[2];
 						for (int s = 0; s < whole->setcount; s++)
@@ -194,7 +195,7 @@ start:
 								}
 						cout << "There is no particle " << id << endl;
 						break;
-						
+
 					}
 					case  's':
 					{
@@ -345,8 +346,8 @@ start:
 					{
 						if (num_parameter(com_arr) != 1)
 							throw 6;
-						//ëª¨ë“  ì •ë³´ ì‚­ì œ -> whole ê°ì²´ë¥¼ ì§€ìš°ê³  ìƒˆë¡œ ë§Œë“¦. ì‹œê°„ë§Œ ìœ ì§€
-						int temp = whole->time;
+						//¸ðµç Á¤º¸ »èÁ¦ -> whole °´Ã¼¸¦ Áö¿ì°í »õ·Î ¸¸µê. ½Ã°£¸¸ À¯Áö
+						double temp = whole->time;
 						delete whole;
 						whole = new Set_whole;
 						whole->time = temp;
@@ -420,15 +421,90 @@ start:
 						break;
 					}
 					case 'l':
-						cout << "ëª…ë ¹ì–´ ëª©ë¡ ì¶œë ¥" << endl;
+					{
+						if (num_parameter(com_arr) == 1)
+						{
+							cout << "--- Commend List ---" << endl;
+							cout << "(p) print commend" << endl;
+							cout << "(a) add commend" << endl;
+							cout << "(d) delete commend" << endl;
+							cout << "(c) configure commend" << endl;
+							cout << "(r) run simulation commend" << endl;
+							cout << "(o) others" << endl;
+							cout << "Enter cl <cmd> to get more information about kinds of the commend you want" << endl;
+							goto start;
+						}
+						else if (num_parameter(com_arr) == 2)
+						{
+							switch (com_arr[2][0])
+							{
+							case 'p':
+							{
+								cout << "pa: print information about all the particles" << endl;
+								cout << "pp <particle> : print information of particle <particle>" << endl;
+								cout << "ps <set> : print information of set <set>" << endl;
+								cout << "pf : print information of forces" << endl;
+								cout << "pt : print the current time(in seconds)" << endl;
+								cout << "pm : print memory usage, i.e., the number of particles, sets and forces" << endl;
+								cout << "pg : print whether gravity is enabled" << endl;
+								goto start;
+							}
+							case 'a':
+							{
+								cout << "ap <particle> <mass> <x> <y> <v_x> <v_y>: Add a particle <particle> with given mass and initial x, y location and x, y speed, i.e., initial location is given as a vector(<x>, <y>) and initial velocity is given as a vector(<v_x>, <v_y>)" << endl;
+								cout << "as <set> : add a set <set>" << endl;
+								cout << "ae <set> <particle> : add a particle <particle> to a set <set>" << endl;
+								cout << "af <force> <set> <x> <y> : add a force <force>, which is imposed on the particles in set <set> whose size is given as a vector(<x>, <y>)" << endl;
+								goto start;
+							}
+							case 'd':
+							{
+								cout << "dp <particle>: delete particle <particle>" << endl;
+								cout << "de <set> <particle> : delete particle <particle> from set <set>.Note that this does not delete particle, but remove a particle from a set" << endl;
+								cout << "df <force> : delete force <force>" << endl;
+								cout << "da : delete all particles, sets and forces" << endl;
+								goto start;
+							}
+							case 'c':
+							{
+								cout << "ct <tick>: change timetick(in seconds)" << endl;
+								cout << "cg <bool> : enable gravity if <bool> is \"true\", and disable gravity if <bool> is \"false\"" << endl;
+								cout << "cp <particle> <bool> : fix or unfix the location of particle <particle>, depending on <bool>" << endl;
+								goto start;
+							}
+							case 'r':
+							{
+								cout << "ru <duration>: run the simulation for <duration> seconds" << endl;
+								cout << "rv <duration> : run the simulation for <duration> seconds and print out the location of each particle(x and y coordinates) at each tick" << endl;
+								goto start;
+							}
+							case 'o':
+							{
+								cout << "qq : stop the simulation, delete all the particles, sets and forces and print memory." << endl;
+								cout << "cl: show the commend list" << endl;
+								goto start;
+							}
+							default:
+							{
+								cout << "Input is incorrect" << endl;
+								goto start;
+							}
+							}
+						}
+						else
+							throw 6;
 					}
-					break;
+					}
+
 				case 'r':
+				{
 					if (num_parameter(com_arr) != 2)
 						throw 6;
-                        			int time_in_second = static_cast<int>(trans_input(com_arr, 2));
-                        			int numof_tick = (time_in_second * 1000 / whole->t_tick);
-                        			cout << time_in_second << "ì´ˆ ë™ì•ˆì„ ê³„ì‚°í•©ë‹ˆë‹¤." << endl;
+					int time_in_second = static_cast<int>(trans_input(com_arr, 2));
+					int numof_tick = (time_in_second * 1000 / whole->t_tick);
+
+					cout << numof_tick*whole->t_tick / 1000.0 << "ÃÊ µ¿¾ÈÀ» °è»êÇÕ´Ï´Ù." << endl;
+
 					switch (com_arr[1][1])
 					{
 					case  'u':
@@ -438,13 +514,14 @@ start:
 					}
 					case  'v':
 					{
-						whole->Calculate(numof_tick, 1);
+					whole->Calculate(numof_tick, 1);
 						break;
+					}	
+				
 					}
-					default:
-						throw commend;
-					}
-					delete[] com_arr;
+				}
+				default:
+					throw 3;
 				}
 			}
 		}
@@ -455,48 +532,48 @@ start:
 		{
 		case 1:
 		{
-			cout << "ìž…ë ¥ ì¸ìˆ˜ê°€ ì—†ê±°ë‚˜ ì •ìƒì ì´ì§€ ì•ŠìŠµë‹ˆë‹¤. ë‹¤ì‹œ ìž…ë ¥í•´ì£¼ì„¸ìš”." << endl;
+			cout << "ÀÔ·Â ÀÎ¼ö°¡ ¾ø°Å³ª Á¤»óÀûÀÌÁö ¾Ê½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
 			goto start;
 		}
 		case 2:
 		{
-			cout << "ì˜¬ë°”ë¥¸ ì†Œìˆ˜ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”." << endl;
+			cout << "¿Ã¹Ù¸¥ ¼Ò¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
 			goto start;
 		}
 		case 3:
 		{
-			cout << "ì»¤ë§¨ë“œëŠ” ë‘ê¸€ìžë¡œë§Œ ìž…ë ¥í•´ì£¼ì„¸ìš”. cl ì„ ìž…ë ¥í•˜ë©´ ì»¤ë§¨ë“œ ëª©ë¡ì„ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤." << endl;
+			cout << "¿Ã¹Ù¸¥ Ä¿¸Çµå ÀÔ·ÂÀÌ ¾Æ´Õ´Ï´Ù. cl À» ÀÔ·ÂÇÏ¸é Ä¿¸Çµå ¸ñ·ÏÀ» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù." << endl;
 			goto start;
 		}
 		case 4:
 		{
-			cout << "time tickì€ 0.001 ì´ìƒìœ¼ë¡œë§Œ ì„¤ì •í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
+			cout << "time tickÀº 0.001 ÀÌ»óÀ¸·Î¸¸ ¼³Á¤ÇÒ ¼ö ¾ø½À´Ï´Ù." << endl;
 			goto start;
 		}
 		case 5:
 		{
-			cout << "idë¥¼ ìž…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤." << endl;
+			cout << "id¸¦ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù." << endl;
 			goto start;
 		}
 		case 6:
 		{
-			cout << "ì»¤ë§¨ë“œê°€ í•„ìš”ë¡œ í•˜ëŠ” ì¸ìˆ˜ì™€ ê°œìˆ˜ê°€ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤." << endl;
+			cout << "Ä¿¸Çµå°¡ ÇÊ¿ä·Î ÇÏ´Â ÀÎ¼ö¿Í °³¼ö°¡ ¸ÂÁö ¾Ê½À´Ï´Ù." << endl;
 			goto start;
 		}
 		case 7:
 		{
-			cout << "ì–‘ìˆ˜ë¡œë§Œ ë°›ì„ ìˆ˜ ìžˆëŠ” ì¸ìˆ˜ìž…ë‹ˆë‹¤." << endl;
+			cout << "¾ç¼ö·Î¸¸ ¹ÞÀ» ¼ö ÀÖ´Â ÀÎ¼öÀÔ´Ï´Ù." << endl;
 		}
 		}
 	}
 	catch (string str)
 	{
 		if (str == "bool")
-			cout << "true í˜¹ì€ falseë¡œ ì„¤ì •ì„ ìž…ë ¥í•˜ì„¸ìš”" << endl;
+			cout << "true È¤Àº false·Î ¼³Á¤À» ÀÔ·ÂÇÏ¼¼¿ä" << endl;
 		else
 		{
-			cout << "ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜ìž…ë‹ˆë‹¤. ìž…ë ¥ì„ í™•ì¸í•˜ì„¸ìš”." << endl;
-			cout << "ìž˜ëª»ëœ ìž…ë ¥: " << str << endl;
+			cout << "¾Ë ¼ö ¾ø´Â ¿À·ùÀÔ´Ï´Ù. ÀÔ·ÂÀ» È®ÀÎÇÏ¼¼¿ä." << endl;
+			cout << "Àß¸øµÈ ÀÔ·Â: " << str << endl;
 
 		}
 		goto start;
