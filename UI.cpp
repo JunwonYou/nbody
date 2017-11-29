@@ -503,7 +503,7 @@ start:
 					int time_in_second = static_cast<int>(trans_input(com_arr, 2));
 					int numof_tick = (time_in_second * 1000 / whole->t_tick);
 
-					cout << numof_tick*whole->t_tick / 1000.0 << "초 동안을 계산합니다." << endl;
+					cout << time_in_second << "초 동안을 계산합니다." << endl;
 
 					switch (com_arr[1][1])
 					{
